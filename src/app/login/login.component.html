@@ -1,0 +1,15 @@
+<div class="head-pfr">Logiciel de gestion des apprenants de la SONATEL ACADEMY</div>
+<div fxLayoutAlign="center center" fxFlexFill class="main-div">
+    <mat-card fxFlex="40">
+        <mat-toolbar color="primary">Page  Authentification</mat-toolbar>
+        <form fxLayout="stretch" fxLayout="column" class="login-form" [formGroup]="formGroup" (ngSubmit)='loginProcess()'>
+            <mat-form-field>
+              <input matInput placeholder="username" formControlName="username">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="password" placeholder="password" formControlName="password">
+            </mat-form-field>
+            <button mat-raised-button color="primary"  type="submit">Connecter</button>
+          </form>      
+    </mat-card>
+</div>

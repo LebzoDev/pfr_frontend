@@ -1,0 +1,43 @@
+<mat-toolbar fxLayout="row" color="primary">
+    <span fxFlex>Responsive Toolbar Demo</span>
+    <button mat-button *ngFor="let item of menuItems"
+        [fxShow]="item.showOnDesktop"
+        [fxShow.xs]="item.showOnMobile"
+        [fxShow.sm]="item.showOnTablet">
+        <mat-icon class="mr"> {{item.icon}}</mat-icon>
+        {{item.label}}
+    </button>
+    <ng-container>
+    <button mat-icon-button [matMenuTriggerFor]="dropMenu">
+        <mat-icon>
+            more-vert
+        </mat-icon>
+    </button>
+    <mat-menu #dropMenu="matMenu">
+        <ng-container *ngFor="let item of menuItems">
+            <div [fxShow]="!item.showOnDesktop"
+            [fxShow.xs]="!item.showOnMobile"
+            [fxShow.sm]="!item.showOnTablet">
+
+            <button mat-menu-item>
+                <mat-icon class="mr">{{item.icon}}</mat-icon>
+                {{item.label}}
+            </button>
+            <mat-divider></mat-divider>
+        </div>
+        </ng-container>
+    </mat-menu>
+</ng-container>
+</mat-toolbar>
+<br>
+<div  style="float: left;width: 50%;height: 80vh; background-color:#3f51b5;border: 3px solid #ffffff;display: flex;margin-left: 2vw;box-shadow: 12px 12px 12px rgba(0,0,0,0.25),12px 12px 12px rgba(0,0,0,0.25);">
+    <section  style="font-size: 3vw;color: azure;">
+        Cliquez pour s'authentifier
+    </section>
+</div>
+<section style="float: right;">
+    <img style="width: 30vw;" src="assets/image/undraw_Booking_re_gw4j.png">
+    <div style="font-size: 1.3vw;background-color: red;width: 35vw;text-align: center;">
+        Cliquer sur le boutton <strong>Sign-Up</strong> du gauche a fin de vous conncter 
+    </div>
+</section>

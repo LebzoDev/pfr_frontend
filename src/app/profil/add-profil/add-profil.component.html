@@ -1,0 +1,12 @@
+<section style="color: aliceblue; background-color: burlywood;font-size: 2vw; font-weight: bold;display: flex;justify-content: center;align-items: center;">
+   Ajout de Profil
+</section>
+<form #loginFormulaire="ngForm">
+   <label for="libelle">
+      Libelle
+   </label>
+   <input text required ngModel name="libelle" type="text" class="form-control" id="libelle">
+   <button [disabled]="loginFormulaire.invalid" class="btn btn-primary" (click)="post(loginFormulaire)">
+      Ajouter
+   </button>
+</form>
