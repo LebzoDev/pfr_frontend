@@ -1,15 +1,27 @@
 <div class="head-pfr">Logiciel de gestion des apprenants de la SONATEL ACADEMY</div>
-<div fxLayoutAlign="center center" fxFlexFill class="main-div">
-    <mat-card fxFlex="40">
-        <mat-toolbar color="primary">Page  Authentification</mat-toolbar>
+<div style="background-color: #008e8e;"  fxLayoutAlign="center center"  fxFlexFill class="main-div">
+    <mat-card fxFlex="40" style="height: 25vw;">
+        <mat-toolbar>Page  Authentification</mat-toolbar>
         <form fxLayout="stretch" fxLayout="column" class="login-form" [formGroup]="formGroup" (ngSubmit)='loginProcess()'>
+          <hr>
+            <mat-divider></mat-divider>
             <mat-form-field>
-              <input matInput placeholder="username" formControlName="username">
+                <input matInput placeholder="username" formControlName="username">
             </mat-form-field>
+            <hr>
             <mat-form-field>
                 <input matInput type="password" placeholder="password" formControlName="password">
             </mat-form-field>
-            <button mat-raised-button color="primary"  type="submit">Connecter</button>
+            <hr>
+            <button mat-raised-button class="btn" style="background-color: #ff7713;"  type="submit">Connecter</button>
           </form>      
     </mat-card>
 </div>
+
+<footer class="bg-light text-center text-lg-start" style="width: 100%;float: left;position: fixed;bottom: 0;left: 0;">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: #ff7713;color: #ffffff;font-weight: bold;">
+    Powered BY LebzoDev©2020 Copyright
+  </div>
+  <!-- Copyright -->
+</footer>

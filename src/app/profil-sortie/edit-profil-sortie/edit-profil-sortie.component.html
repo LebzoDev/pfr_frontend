@@ -1,0 +1,37 @@
+<div style="width: 50%;float: left;">
+    <mat-toolbar style="font-size:0.7vw;margin: 0;background-color:#008e8e;">
+      <mat-toolbar-row >
+         <span class="example-spacer">EDITER PROFIL</span>
+      <button class="btn-dialog-close" style="font-size:1vw;background-color: #f88c0a;" mat-stroked-button #closed (click)='onClose()' tabIndex='-1'>Fermer<mat-icon>clear</mat-icon></button>
+   </mat-toolbar-row>
+   </mat-toolbar>
+   <mat-divider></mat-divider>
+    <form #loginFormulaire="ngForm">
+       <label for="libelleProfil">
+          Libelle
+       </label>
+       <input text required ngModel name="libelleProfil" type="text" [(ngModel)]="editDataPS.libelleProfil" class="form-control" id="libelleProfil">
+       <button [disabled]="loginFormulaire.invalid" style="width: 100%;" class="btn btn-primary" (click)="put(loginFormulaire,editDataPS)">
+           Soumettre
+        </button>
+    </form>
+   </div>
+    <div style="width: 50%;float: right;">
+      <div class="card text-center">
+         <div class="card-header" style="background-color: #008e8e;">
+           Details
+         </div>
+         <div class="card-body">
+           <h5 class="card-title">Identification: {{editDataPS.id}}</h5>
+           <h5>
+           <p class="card-text">Description Libelle <strong>{{editDataPS.libelleProfil}}</strong></p>
+         </h5>
+           <h5> Archive:
+           <a class="btn btn-primary  disabled"> {{editDataPS.archive}}</a>
+         </h5>
+         </div>
+       </div>
+   </div>
+   <div class="card text-center card-header" style="width: 100%;margin: 0;">
+      ProfilSortie Edit Part
+   </div>

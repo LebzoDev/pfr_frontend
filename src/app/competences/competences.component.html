@@ -1,0 +1,244 @@
+
+<mat-sidenav-container class="sidenav-container" >
+    <mat-sidenav #drawer class="sidenav" fixedInViewport
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="(isHandset$ | async) === false">
+        <button  type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+       >
+      <mat-toolbar>Menu </mat-toolbar>
+    </button>
+      <mat-nav-list>
+        <a mat-list-item > PROFIL</a>
+        <a mat-list-item routerLinkActive="active" [routerLink]="['/','admin','users']">UTILISATEURS</a>
+        <a mat-list-item [routerLink]="['/','admin','profil_sorties']">PROFILS DE SORTIE</a>
+        <a mat-list-item [routerLink]="['/','admin','competences']">COMPETENCES</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar style="display: flex;justify-content: space-between;align-items: center;background-color:  #cacfd2 ;color: #000000;">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <span><button  type="button"
+                       aria-label="Toggle sidenav"
+                       mat-icon-button
+                       (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button></span>
+      <span> GESTION DES COMPETENCES</span>
+      <mat-card-actions  >
+        <button mat-flat-button mat-button (click)="loggout()"> Deconnecter </button>
+      </mat-card-actions>
+      </mat-toolbar>
+      <!-- Add Content Here -->
+  
+      <mat-card>
+      <section class="container" style="border: 2px solid #85929e;width: 100%;justify-content: space-between;flex: 1 1 auto;align-items: center;">
+        <div class="example-button-row">
+          <button mat-button style="background-color:  #85929e;">Liste Competences</button>
+          <button mat-button style="background-color:  #85929e;" >Liste Groupes de competences</button>
+          <button mat-button style="background-color:  #85929e;">Ajouter competences</button>
+          <button mat-button style="background-color:  #85929e;">Ajouter Groupe Competences</button>
+        </div>
+      </section>
+    </mat-card>
+      <hr>
+      <!--Default Display-->
+      <div class="container" *ngIf="defaultDisplay">
+        <mat-card style="background-color: #cacfd2">
+          <mat-card fxFlex="15">
+          <section style="width: 100%;">
+            <img style=" float:left;width: 7vw;height: 7vw; border-radius: 50px;" src="assets/image/001.jpeg">
+        </section>
+        </mat-card>
+        <mat-card fxFlex="85">
+             <section style="display: flex;justify-content: center;  margin-left: 3vw;">
+               <label >GRoupe de competences:</label>
+                <select style="width: 50%;margin:  0 auto;text-align: center;">
+                  <option selected>Open this select menu</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </section>
+        
+              <hr>
+              <section style="display: flex;justify-content: center; margin-left: 3vw;">
+                <label>Libelle:</label>
+                 <input type="text" style="width: 50%;margin:  0 auto;text-align: center;">     
+               </section>
+              </mat-card>
+            </mat-card>
+              <mat-card class="example-card">
+                <hr>
+                <section>
+                 <div class="example-label" style="text-align: center;">Niveaux:</div>
+                 <div class="example-button-row">
+                   <button mat-raised-button color="primary">Niveau 1</button>
+                   <button mat-raised-button color="accent">Niveau 2</button>
+                   <button mat-raised-button color="warn">Niveau 3</button>
+                 </div>
+               </section>
+                <section style="width:100%">
+                <mat-card fxFlex="50">
+                  <mat-card style="background-color: #85929e;">
+                    Criteres d'evaluation
+                  </mat-card>
+                  <mat-card >
+                      <input style="height: 15vh;width: 100%;" type="text">
+                  </mat-card>
+                </mat-card>
+                <mat-card fxFlex="50">
+                  <mat-card style="background-color: #85929e;">
+                    Groupe d'actions
+                  </mat-card>
+                  <mat-card >
+                      <input style="height: 15vh;width: 100%;" type="text">
+                  </mat-card>
+                </mat-card>
+              </section>
+              <br>
+                <mat-card-actions style="margin:0 auto; text-align: center;width: 70%;" class="btn btn-success">
+                  <button mat-button>Soumettre</button>
+                </mat-card-actions>
+              </mat-card>
+      </div>
+       <!--End Default Display-->
+
+      <!--------------------------------------------->
+
+      <!--List GroupCompetences Display-->
+      <div class="container" *ngIf="groupCompetencesDisplay">
+            <button mat-raised-button class="btn btn-success"> <mat-icon>add</mat-icon>Ajouter un groupe de competence </button>  
+        <hr>
+        <mat-card style="background-color: #cacfd2">
+             
+              <mat-chip-list  class="mat-chip-list-stacked" aria-label="Color selection">
+                <mat-chip style="background-color: #85929e;justify-content: space-between;align-items: center;width: 100%;" fxFlex="100" selected color="primary">
+                  <img style=" float:left;width: 4vw;height: 4vw; border-radius: 50px;" src="assets/image/001.jpeg">
+                  Liste de groupes de competences
+                  <mat-chip fxFlex="30" selected style="background-color: #cacfd2;">
+                        <input type="text" style="width:100%"
+                             placeholder="Search for a street"
+                             [formControl]="control"
+                             [matAutocomplete]="auto">
+                             <mat-icon>search</mat-icon>
+                      <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let street of filteredStreets | async" [value]="street">
+                          {{street}}
+                        </mat-option>
+                      </mat-autocomplete>                  
+                  </mat-chip>   
+                </mat-chip> 
+              </mat-chip-list>
+        </mat-card>
+              <mat-card class="example-card">
+                <!-- <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
+                  <mat-chip fxFlex="15" selected color="primary">
+                    Recherche
+                    <mat-icon>search</mat-icon>
+                        <input type="text" style="width:100%"
+                             placeholder="Search for a street"
+                             [formControl]="control"
+                             [matAutocomplete]="auto">
+                      <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let street of filteredStreets | async" [value]="street">
+                          {{street}}
+                        </mat-option>
+                      </mat-autocomplete>                  
+                  </mat-chip> 
+                </mat-chip-list> -->
+                
+                <section style="width:100%">
+                  <mat-card fxFlex="50">
+                    <mat-card style="background-color: #85929e;">
+                      Criteres d'evaluation
+                      <mat-icon>add</mat-icon>
+                    </mat-card>
+                    <mat-card >
+                        <input style="height: 15vh;width: 100%;" type="text">
+                    </mat-card>
+                  </mat-card>
+                <mat-card fxFlex="50">
+                  <mat-card style="background-color: #85929e;">
+                    Criteres d'evaluation
+                    <mat-icon>add</mat-icon>
+                  </mat-card>
+                  <mat-card >
+                      <input style="height: 15vh;width: 100%;" type="text">
+                  </mat-card>
+                </mat-card>
+                <mat-card fxFlex="50">
+                  <mat-card style="background-color: #85929e;">
+                    Criteres d'evaluation
+                    <mat-icon>add</mat-icon>
+                  </mat-card>
+                  <mat-card >
+                      <input style="height: 15vh;width: 100%;" type="text">
+                  </mat-card>
+                </mat-card>
+                <mat-card fxFlex="50">
+                  <mat-card style="background-color: #85929e;">
+                    Groupe d'actions
+                  </mat-card>
+                  <mat-card >
+                      <input style="height: 15vh;width: 100%;" type="text">
+                  </mat-card>
+                </mat-card>
+              </section>
+              <section style="width:100%">
+                <mat-card fxFlex="50">
+                  <mat-card style="background-color: #85929e;">
+                    Criteres d'evaluation
+                    <mat-icon>add</mat-icon>
+                  </mat-card>
+                  <mat-card >
+                      <input style="height: 15vh;width: 100%;" type="text">
+                  </mat-card>
+                </mat-card>
+              <mat-card fxFlex="50">
+                <mat-card style="background-color: #85929e;">
+                  Criteres d'evaluation
+                  <mat-icon>add</mat-icon>
+                </mat-card>
+                <mat-card >
+                    <input style="height: 15vh;width: 100%;" type="text">
+                </mat-card>
+              </mat-card>
+              <mat-card fxFlex="50">
+                <mat-card style="background-color: #85929e;">
+                  Criteres d'evaluation
+                  <mat-icon>add</mat-icon>
+                </mat-card>
+                <mat-card >
+                    <input style="height: 15vh;width: 100%;" type="text">
+                </mat-card>
+              </mat-card>
+              <mat-card fxFlex="50">
+                <mat-card style="background-color: #85929e;">
+                  Groupe d'actions
+                </mat-card>
+                <mat-card >
+                    <input style="height: 15vh;width: 100%;" type="text">
+                </mat-card>
+              </mat-card>
+            </section>
+              <br>
+                <mat-card-actions style="margin:0 auto; text-align: center;width: 70%;" class="btn btn-success">
+                  <button mat-button>Soumettre</button>
+                </mat-card-actions>
+              </mat-card>
+      </div>
+       <!--List GroupCompetences Display-->
+
+      <!--------------------------------------------->
+  

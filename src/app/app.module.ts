@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import {MatGridListModule} from '@angular/material/grid-list'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon'
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -33,7 +33,20 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import { EditProfilComponent } from './profil/edit-profil/edit-profil.component'; 
-import {MatSlideToggleModule} from '@angular/material/slide-toggle'; 
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MainNavComponent } from './main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { AdminComponent } from './users/admin/admin.component';
+import { EditUserComponent } from './users/admin/edit-user/edit-user.component';
+import { AddUserComponent } from './users/admin/add-user/add-user.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { ProfilSortieComponent } from './profil-sortie/profil-sortie.component';
+import { AddProfilSortieComponent } from './profil-sortie/add-profil-sortie/add-profil-sortie.component';
+import { EditProfilSortieComponent } from './profil-sortie/edit-profil-sortie/edit-profil-sortie.component';
+import { CompetencesComponent } from './competences/competences.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle'; 
+import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +55,16 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     AddProfilComponent,
     PageNotFoundComponent,
     AccueilComponent,
-    EditProfilComponent
+    EditProfilComponent,
+    MainNavComponent,
+    AdminComponent,
+    EditUserComponent,
+    AddUserComponent,
+    ProfilSortieComponent,
+    AddProfilComponent,
+    AddProfilSortieComponent,
+    EditProfilSortieComponent,
+    CompetencesComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +90,15 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatSortModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    LayoutModule,
+    MatFormFieldModule,
+    MatSlideToggleModule,
+    MatGridListModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatButtonToggleModule,
+    MatAutocompleteModule
   ],
   providers: [AuthServiceService,AuthGuard,EventsService,ProfilService,{
     provide: HTTP_INTERCEPTORS,

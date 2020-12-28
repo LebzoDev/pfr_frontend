@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { EventEmitter } from '@angular/core';
 import { AuthServiceService } from '../../auth-service.service';
 import { ProfilService } from '../../service/profil.service';
-import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-profil',
@@ -11,7 +11,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class AddProfilComponent implements OnInit {
   formGroup:any = FormGroup;
-  constructor(private profilService: ProfilService, private dialogRef: MatDialogRef<AddProfilComponent>) { }
+  @Output() close = new EventEmitter<boolean>();
+  constructor(private profilService: ProfilService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -19,8 +20,12 @@ export class AddProfilComponent implements OnInit {
 
   initForm(){
     this.formGroup = new FormGroup({
-      libelle: new FormControl('',[Validators.required])
+      libelle: new FormControl('',[Validators.required]),
     })
+  }
+  onClose(){
+    let data = true;
+    this.close.emit(data);
   }
   post(formulaire: NgForm){
     console.log('c bon');
@@ -29,7 +34,7 @@ export class AddProfilComponent implements OnInit {
     .subscribe(
       (result) => {
         console.log('Enregistrement terminé !'+result);
-        this.dialogRef.close();
+        this.onClose();
       },
       (error) => {
         console.log('Erreur ! : ' + error);

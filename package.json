@@ -23,6 +23,8 @@
     "@angular/platform-browser-dynamic": "~11.0.3",
     "@angular/router": "~11.0.3",
     "@auth0/angular-jwt": "^5.0.2",
+    "@syncfusion/ej2-angular-navigations": "^18.4.30",
+    "@syncfusion/ej2-ng-navigations": "^16.2.50",
     "@types/punycode": "^2.1.0",
     "angular-jwt": "^0.1.11",
     "bootstrap": "^4.5.3",

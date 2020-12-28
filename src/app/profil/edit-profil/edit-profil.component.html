@@ -1,13 +1,37 @@
-<section style="color: aliceblue; background-color: burlywood;font-size: 2vw; font-weight: bold;display: flex;justify-content: center;align-items: center;">
-    Ajout de Profil
- </section>
+<div style="width: 50%;float: left;">
+ <mat-toolbar style="font-size:0.7vw;margin: 0;background-color:#008e8e;">
+   <mat-toolbar-row >
+      <span class="example-spacer">EDITER PROFIL</span>
+   <button class="btn-dialog-close" style="font-size:1vw;background-color: #f88c0a;" mat-stroked-button #closed (click)='onClose()' tabIndex='-1'>Fermer<mat-icon>clear</mat-icon></button>
+</mat-toolbar-row>
+</mat-toolbar>
+<mat-divider></mat-divider>
  <form #loginFormulaire="ngForm">
     <label for="libelle">
        Libelle
     </label>
-    <input text required ngModel name="libelle" type="text" class="form-control" id="libelle">
-    <mat-slide-toggle>Slide me!</mat-slide-toggle>
-    <button [disabled]="loginFormulaire.invalid" class="btn btn-primary" (click)="put(loginFormulaire)">
-       Modifier
-    </button>
+    <input text required ngModel name="libelle" type="text" [(ngModel)]="editData.libelle" class="form-control" id="libelle">
+    <button [disabled]="loginFormulaire.invalid" style="width: 100%;" class="btn btn-primary" (click)="put(loginFormulaire,editData)">
+        Soumettre
+     </button>
  </form>
+</div>
+ <div style="width: 50%;float: right;">
+   <div class="card text-center">
+      <div class="card-header" style="background-color: #008e8e;">
+        Details
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Identification: {{editData.id}}</h5>
+        <h5>
+        <p class="card-text">Description Libelle <strong>{{editData.libelle}}</strong></p>
+      </h5>
+        <h5> Archive:
+        <a class="btn btn-primary  disabled"> {{editData.archive}}</a>
+      </h5>
+      </div>
+    </div>
+</div>
+<div class="card text-center card-header" style="width: 100%;margin: 0;">
+   Profil Edit Part
+</div>

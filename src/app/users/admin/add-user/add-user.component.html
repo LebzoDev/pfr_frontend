@@ -1,0 +1,92 @@
+<div fxLayoutAlign="center center" fxFlexFill class="main-div">
+    <mat-card fxFlex="60">
+        <mat-toolbar color="primary">Ajouter une nouvelle utilisateur</mat-toolbar>
+        <p>
+          <mat-toolbar>
+           <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span>My App</span>
+          <span class="example-spacer"></span>
+          <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+           <mat-icon>share</mat-icon>
+         </button>
+         <button class="btn-dialog-close" mat-stroked-button (click)='onClose()' tabIndex='-1'><mat-icon>clear</mat-icon></button>
+        </mat-toolbar>
+        </p>
+        <form fxLayout="stretch" fxLayout="column" class="login-form" [formGroup]="formGroup" (ngSubmit)='onAddUserProcess()'>
+            
+          <table class="example-full-width">
+          <tr>
+          <td>
+          <mat-form-field class="example-full-width">
+              <mat-label>Username</mat-label>
+              <input matInput placeholder="username" formControlName="username">
+          </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>Password</mat-label>
+                <input matInput type="password" placeholder="password" formControlName="password">
+            </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <mat-form-field class="example-full-width">
+            <mat-label>Prenom(s)</mat-label>
+            <input matInput placeholder="Prenom" formControlName="prenom">
+        </mat-form-field>
+      </td>
+      <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Nom</mat-label>
+              <input matInput type="text" placeholder="Nom" formControlName="nom">
+          </mat-form-field>
+      </td>
+    </tr>
+      </table>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" [formControl]="email" formControlName="email" required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <div class="form-group">
+      <label for="file">Choose File</label>
+      <input type="file" name="photo"
+             id="file" #event (change)='handleFileInput($event.target)'>
+      </div>
+          
+            <table class="example-full-width" cellspacing="0"><tr>
+              <td><mat-form-field class="example-full-width">
+                <mat-label>First name</mat-label>
+                <input matInput>
+              </mat-form-field></td>
+              <td><mat-form-field class="example-full-width">
+                <mat-label>Long Last Name That Will Be Truncated</mat-label>
+                <input matInput>
+              </mat-form-field></td>
+            </tr></table>
+          
+            <p>
+              <mat-form-field class="example-full-width">
+                <mat-label>Address</mat-label>
+                <textarea matInput placeholder="Ex. 100 Main St">1600 Amphitheatre Pkwy</textarea>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Address 2</mat-label>
+                <textarea matInput></textarea>
+              </mat-form-field>
+            </p>
+
+            <button mat-raised-button color="primary"  type="submit">Soumettre
+            </button>
+
+          </form>      
+    </mat-card>
+</div>

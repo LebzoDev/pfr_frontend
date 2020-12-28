@@ -1,5 +1,5 @@
-<mat-toolbar fxLayout="row" color="primary">
-    <span fxFlex>Responsive Toolbar Demo</span>
+<mat-toolbar fxLayout="row" style="background-color:#008e8e;color: #ffffff;">
+    <span fxFlex style="font-size: 1.5vw;">SONAP:SONATEL ACADEMY PLATEFORM</span>
     <button mat-button *ngFor="let item of menuItems"
         [fxShow]="item.showOnDesktop"
         [fxShow.xs]="item.showOnMobile"
@@ -10,7 +10,7 @@
     <ng-container>
     <button mat-icon-button [matMenuTriggerFor]="dropMenu">
         <mat-icon>
-            more-vert
+            expand_more
         </mat-icon>
     </button>
     <mat-menu #dropMenu="matMenu">
@@ -29,15 +29,80 @@
     </mat-menu>
 </ng-container>
 </mat-toolbar>
-<br>
-<div  style="float: left;width: 50%;height: 80vh; background-color:#3f51b5;border: 3px solid #ffffff;display: flex;margin-left: 2vw;box-shadow: 12px 12px 12px rgba(0,0,0,0.25),12px 12px 12px rgba(0,0,0,0.25);">
-    <section  style="font-size: 3vw;color: azure;">
-        Cliquez pour s'authentifier
-    </section>
+<div  style="font-size: 1.5vw;text-align: center;float: left;margin-right:2vw;width: 50%;height: 85vh;color: aliceblue; background-color:#008e8e;display: flex;
+">
+<mat-accordion >
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header style="background-color: #ff7713;font-weight: bold;">
+        <mat-panel-title>
+            SONAP
+        </mat-panel-title>
+        <mat-panel-description >
+          DESCRIPTION DE LA PLATFORME SONAP
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p style="width: 100%;margin: 0 0 auto 0;display: inline;float: left;font-size: 1vw;line-height: 2vw;">
+        <!--section  style="font-size: 3vw;color: azure;"-->
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur voluptatibus, animi hic quidem provident, facilis totam molestiae quas tempore, esse amet ad fuga beatae. Harum odit quaerat recusandae debitis nesciunt?
+        At iure atque, nihil, consequatur mollitia culpa eligendi non asperiores odio corrupti facere laborum iste repellendus ut, debitis nesciunt commodi natus laudantium esse earum. Assumenda quas illo ea velit eius.
+        Iste rerum facilis sequi molestiae iure, vel, doloremque maxime voluptatibus fugiat aut nobis dolorem repellat cumque necessitatibus est explicabo consequatur. Ipsum consequuntur vel distinctio dignissimos deserunt cum, porro eaque ullam.    
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, commodi dolores earum beatae explicabo animi eligendi corrupti inventore, qui, aut amet illo? Similique, quo? Dicta, impedit. Nobis, alias animi? Autem.
+        <!--/section-->
+        </p>
+    </mat-expansion-panel>
+   
+    <mat-grid-list cols="2" rowHeight="2:1" >
+        <mat-grid-tile style="background-color: #ff7713;"><img width="100%" src="assets/image/001.jpeg">  </mat-grid-tile>
+        <mat-grid-tile style="background-color: #ff7713;"><img width="100%" src="assets/image/002.jpeg"></mat-grid-tile>
+        <mat-grid-tile style="background-color: #ff7713;"><img width="100%" src="assets/image/003.webp"></mat-grid-tile>
+        <mat-grid-tile style="background-color: #ff7713;"><img width="100%" src="assets/image/004.png"></mat-grid-tile>
+      </mat-grid-list>
+    
+      <mat-expansion-panel (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false">
+<mat-expansion-panel-header style="background-color: #ff7713;font-weight: bold;">
+<mat-panel-title>
+Contactez nous
+</mat-panel-title>
+<mat-panel-description >
+How can we help you ????
+</mat-panel-description>
+</mat-expansion-panel-header>
+    <div>
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Favorite food</mat-label>
+          <input matInput placeholder="Ex. Pizza" value="Sushi">
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+          <mat-label>Leave a comment</mat-label>
+          <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+        </mat-form-field>
+      </form>
+    </div>
+</mat-expansion-panel>
+      
+  </mat-accordion>
+  <br>    
 </div>
-<section style="float: right;">
-    <img style="width: 30vw;" src="assets/image/undraw_Booking_re_gw4j.png">
-    <div style="font-size: 1.3vw;background-color: red;width: 35vw;text-align: center;">
-        Cliquer sur le boutton <strong>Sign-Up</strong> du gauche a fin de vous conncter 
+<section style="float: left;margin:  0 auto;">
+    <div style="background-color: #ff7713;width:100%;margin: 2vw;">
+        <img style="width: 36vw;text-align: center;" src="assets/image/undraw_Booking_re_gw4j(1).png">
+    </div>
+    <div style="padding: 2vh;font-size: 1.2vw;background-color:#ffffff;color: #ff7713;width: 30vw;text-align: center;margin: 0 auto;border: 0.7vw solid #008e8e;border-radius: 4px;">
+        Cliquer <strong>Sign-Up</strong> afin de vous authentifier
+        <hr>
+        <button mat-raised-button (click)="authentification()" style="background-color: #008e8e;width: 80%;"  type="submit">Connecter</button>
+       
     </div>
 </section>
+
+<footer class="bg-light text-center text-lg-start" style="width: 100%;float: left;position: fixed;bottom: 0;left: 0;">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: #ff7713;color: #ffffff;font-weight: bold;">
+      Powered BY LebzoDev©2020 Copyright
+    </div>
+    <!-- Copyright -->
+</footer>

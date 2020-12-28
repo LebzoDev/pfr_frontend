@@ -11,8 +11,8 @@ export class TokenInterceptorService implements HttpInterceptor {
   constructor(private injector: Injector,private auth:AuthServiceService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
-    console.log('requete avant:');
-    console.log(request);
+    // console.log('requete avant:');
+    // console.log(request);
     let authService = this.injector.get(AuthServiceService);
        
     let tokenizedReq = request.clone({
@@ -21,8 +21,8 @@ export class TokenInterceptorService implements HttpInterceptor {
         Accept: 'application/json'
       }
     })
-    console.log('requete apres:');
-    console.log(tokenizedReq);
+    // console.log('requete apres:');
+    // console.log(tokenizedReq);
    
     if(!this.auth.getToken()){
       tokenizedReq = request;

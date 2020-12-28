@@ -4,16 +4,42 @@
 .login-form{
     padding: 20px;
 }
-.head-pfr{
-box-shadow:12px 12px 16px 0 rgba(0, 0, 0, 0.25),
--8px -8px 12px 0 rgba(255, 255, 255, 0.3);
-width: 100%;
-height: 4vw;
-background-color:#3f51b5;
-color: #ffffff;
-font-size:2.4vw;
-text-align: center;
-line-height: 4vw;
-border-top: 4px solid #ffffff;
-font-weight: bold;
-}
+.sidenav-container {
+    height: 100%;
+  }
+  mat-nav-list a {
+    color: #ffffff;
+  }
+  .sidenav {
+    width: 15vw;
+    background-color: #008e8e;
+    
+  }
+  .sidenav .mat-toolbar {
+    background: inherit;
+    color: #ffffff;
+  }
+  
+  .mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  td {
+    padding-right: 8px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  
