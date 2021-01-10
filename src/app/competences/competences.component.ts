@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
 import { map, shareReplay, startWith } from 'rxjs/operators';
 import { AuthServiceService } from '../auth-service.service';
 
+
+
+
 @Component({
   selector: 'app-competences',
   templateUrl: './competences.component.html',
@@ -14,8 +17,11 @@ import { AuthServiceService } from '../auth-service.service';
 export class CompetencesComponent implements OnInit {
 
   defaultDisplay:boolean=false;
-  groupCompetencesDisplay:boolean=true
+  groupCompetencesDisplay:boolean=false;
+  addGroupCompetencesDisplay:boolean=true;
+  listCompetencesDisplay:boolean=false;
   pourcent: string = '80%';
+  tabs:Array<string>=['Competence 1','Competence 2','Competence 3','Competence 4','Competence 5','Competence 6','Competence 1','Competence 2','Competence 3','Competence 4','Competence 5','Competence 6'];
   constructor(private breakpointObserver: BreakpointObserver,private router: Router,private authService: AuthServiceService,) { }
 
   control = new FormControl();
@@ -41,7 +47,7 @@ export class CompetencesComponent implements OnInit {
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
         map(result => result.matches),
-        shareReplay()
+        shareReplay() 
     );
 
   // ngOnInit(): void {
@@ -50,5 +56,4 @@ export class CompetencesComponent implements OnInit {
   loggout(){
     this.authService.deconnected();
   }
-
 }

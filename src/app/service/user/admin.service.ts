@@ -31,8 +31,8 @@ export class AdminService {
     formData.append('prenom', form.prenom);
     formData.append('nom', form.nom);
     formData.append('email', form.email);
-    formData.append('id', '21');
-  
+    formData.append('id', form.profil);
+    console.log(formData.getAll)
     return this.http.post(endpoint, formData);
 
   }

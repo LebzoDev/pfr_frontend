@@ -28,7 +28,7 @@ export class AddProfilComponent implements OnInit {
     this.close.emit(data);
   }
   post(formulaire: NgForm){
-    console.log('c bon');
+    console.log('c bon add profil');
     console.log(formulaire.value);
     this.profilService.postProfil(formulaire.value)
     .subscribe(

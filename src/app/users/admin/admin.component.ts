@@ -1,15 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { FormGroup, FormControl,Validators } from '@angular/forms';
 import { AdminService } from '../../service/user/admin.service';
-import { AddUserComponent } from './add-user/add-user.component';
-import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA  } from '@angular/material/dialog';
-import { EditUserComponent } from './edit-user/edit-user.component';
 import { AuthServiceService } from '../../auth-service.service';
-import { element } from 'protractor';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -18,7 +15,15 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AdminComponent {
 
-  constructor(private sanitizer:DomSanitizer,private authService:AuthServiceService,private adminService:AdminService,private breakpointObserver: BreakpointObserver,private dialog:MatDialog) {}
+
+  @Input() edit:string='false';
+  editButton:string | undefined ='Editer'; 
+  constructor(
+      private sanitizer:DomSanitizer,
+      private authService:AuthServiceService,
+      private adminService:AdminService,
+      private breakpointObserver: BreakpointObserver,
+      private router:Router) {}
   datasource: any[]=[];
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -78,26 +83,66 @@ export class AdminComponent {
 //       console.log(error);
 //     });
 // }
+
 onAddUser(){
-  const dialogConfig = new MatDialogConfig();
-  dialogConfig.disableClose = true;
-  dialogConfig.autoFocus = true;
-  dialogConfig.width = "60%"
-  console.log(this.formGroup.value);
-  this.dialog.open(AddUserComponent ,dialogConfig)
-   .afterClosed().subscribe(()=>this.getUsers());
+  this.router.navigate(['admin/users/add']);
 }
 
+// onEditUser(row:any){
+//   //this.adminService.populateform(row);
+//   const dialogConfig = new MatDialogConfig();
+//   dialogConfig.disableClose = true;
+//   dialogConfig.autoFocus = true;
+//   dialogConfig.width = "60%";
+//   dialogConfig.data={id: row.id,prenom: row.prenom,nom:row.nom,username:row.username,password:row.password,email:row.email,photo:row.photo};
+//   this.dialog.open(EditUserComponent, dialogConfig)
+//   .afterClosed().subscribe(()=>this.getUsers());
+// }
+
 onEditUser(row:any){
-  //this.adminService.populateform(row);
-  const dialogConfig = new MatDialogConfig();
-  dialogConfig.disableClose = true;
-  dialogConfig.autoFocus = true;
-  dialogConfig.width = "60%";
-  dialogConfig.data={id: row.id,prenom: row.prenom,nom:row.nom,username:row.username,password:row.password,email:row.email,photo:row.photo};
-  this.dialog.open(EditUserComponent, dialogConfig)
-  .afterClosed().subscribe(()=>this.getUsers());
+  var leb = document.getElementById(row.id);
+  // var edit_profil= document.getElementById(row.id+'_profil');
+  // var editContentProfil = edit_profil?.getAttribute('contenteditable');
+  var edit_email= document.getElementById(row.id+'_email');
+  var editContentEmail = edit_email?.getAttribute('contenteditable');
+  var edit_prenom= document.getElementById(row.id+'_prenom');
+  var edit_nom= document.getElementById(row.id+'_nom');
+
+  if (editContentEmail=='false') {
+    if (leb && edit_email && edit_prenom && edit_nom) {
+      leb.textContent="Enregistrer";
+      editContentEmail='true';
+      //  edit_profil.contentEditable = "true";
+      //  edit_profil.setAttribute("contenteditable", "true");
+      edit_prenom.contentEditable = "true";
+      edit_prenom.setAttribute("contenteditable", "true");
+      edit_nom.contentEditable = "true";
+      edit_nom.setAttribute("contenteditable", "true");
+      edit_email.contentEditable = "true";
+      edit_email.setAttribute("contenteditable", "true");
+     
+    }
+  }else{
+    if (leb && edit_email && edit_prenom && edit_nom) {
+      leb.textContent="Editer";
+      editContentEmail='false';
+      // edit_profil.contentEditable = "true";
+      // edit_profil.setAttribute("contenteditable", "false");
+      edit_prenom.contentEditable = "true";
+      edit_prenom.setAttribute("contenteditable", "false");
+      edit_nom.contentEditable = "true";
+      edit_nom.setAttribute("contenteditable", "false");
+      edit_email.contentEditable = "true";
+      edit_email.setAttribute("contenteditable", "false");
+    }
+  }
+  //this.router.navigate(['admin/users/edit']);
 }
+
+onEditUserclose(row:any){
+  //this.router.navigate(['admin/users/edit']);
+}
+
 
 onDeleteUser(row:any){
   //this.adminService.populateform(row);
@@ -111,7 +156,6 @@ onDeleteUser(row:any){
       console.log(error);
     })
 }
-
 
   onAddUserProcess(){
     console.log('sss');

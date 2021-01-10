@@ -5,22 +5,17 @@
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="(isHandset$ | async) === false">
-        <button  type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-       >
       <mat-toolbar>Menu </mat-toolbar>
-    </button>
       <mat-nav-list >
-        <a mat-list-item  style="color:#ffffff"> PROFIL</a>
-        <a mat-list-item style="color:#ffffff" routerLinkActive="active" [routerLink]="['/','admin','users']">UTILISATEURS</a>
-        <a mat-list-item style="color:#ffffff" [routerLink]="['/','admin','profil_sorties']">PROFILS DE SORTIE</a>
-        <a mat-list-item [routerLink]="['/','admin','competences']">COMPETENCES</a>
+        <a mat-list-item routerLinkActive="active" [routerLink]="['/','admin','profils']"> GESTION PROFIL</a>
+        <a mat-list-item routerLinkActive="active" routerLinkActive="active" [routerLink]="['/','admin','users']">GESTION UTILISATEURS</a>
+        <a mat-list-item routerLinkActive="active">GESTION PROFIL SORTIE</a>
+        <a mat-list-item routerLinkActive="ACTIVE" [routerLink]="['/','admin','competences']">GESTION COMPETENCES</a>
+        <a mat-list-item routerLinkActive="active" [routerLink]="['/','admin','promos']">GETSION PROMO</a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <mat-toolbar style="display: flex;justify-content: space-between;align-items: center;background-color:  #008e8e;color: #ffffff;">
+      <mat-toolbar style="display: flex;justify-content: space-between;align-items: center;background-color: #cacfd2;color: #2b2d42;">
         <button
           type="button"
           aria-label="Toggle sidenav"
@@ -36,8 +31,8 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button></span>
       <span> GESTION DES PROFILS DE SORTIES</span>
-      <mat-card-actions  >
-        <button mat-flat-button mat-button (click)="loggout()"> Deconnecter </button>
+      <mat-card-actions>
+        <button mat-flat-button mat-button style="background-color: #2b2d42;color: #ffffff;" (click)="loggout()"> Deconnecter </button>
       </mat-card-actions>
       </mat-toolbar>
       <!-- Add Content Here -->
@@ -52,7 +47,7 @@
         <app-add-profil-sortie (closePS)="onAddClosed()" *ngIf="addProfilSortie">
         </app-add-profil-sortie>
         <app-edit-profil-sortie [editDataPS]="editDataSend" (closedPS)="onEditClosed()" *ngIf="editProfilSortie"></app-edit-profil-sortie>
-    <table style=" width: 100%; margin:0 auto;background-color:#008e8e;color: #ffffff;" mat-table matSort [dataSource]="datasource" class="mat-elevation-z8">
+    <table style=" width: 100%; margin:0 auto;background-color:#85929e;color: #ffffff;" mat-table matSort [dataSource]="datasource" class="mat-elevation-z8">
       <!-- Position Column --> 
       <ng-container matColumnDef="id">
         <th mat-header-cell mat-sort-header *matHeaderCellDef> ID. </th>
@@ -75,7 +70,7 @@
       <ng-container matColumnDef="Edit">
         <th mat-header-cell *matHeaderCellDef>Edit</th>
         <td mat-cell *matCellDef="let row">
-          <button mat-raised-button style="background-color: #f88c0a;" (click)="onEditProfilSortie(row)">Editer</button>
+          <button mat-raised-button style="background-color: #ffffff;" (click)="onEditProfilSortie(row)">Editer</button>
         </td>
       </ng-container>
     
@@ -83,7 +78,7 @@
       <ng-container matColumnDef="Delete">
         <th mat-header-cell *matHeaderCellDef><mat-icon>delete_outline</mat-icon></th>
         <td mat-cell *matCellDef="let row">
-          <button mat-raised-button style="background-color: #f88c0a;" (click)="onDeleteProfilSortie(row)">Supprimer </button>
+          <button mat-raised-button style="background-color: #ffffff;" (click)="onDeleteProfilSortie(row)">Supprimer </button>
         </td>
       </ng-container>
 
@@ -91,7 +86,7 @@
        <ng-container matColumnDef="Details">
         <th mat-header-cell *matHeaderCellDef><mat-icon>delete_outline</mat-icon></th>
         <td mat-cell *matCellDef="let row">
-          <button mat-raised-button style="background-color: #f88c0a;" (click)="onDeleteProfilSortie(row)">Supprimer </button>
+          <button mat-raised-button style="background-color: #ffffff;" (click)="onDeleteProfilSortie(row)">Details </button>
         </td>
       </ng-container>
     

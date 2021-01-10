@@ -1,8 +1,8 @@
 <div style="width: 50%;float: left;">
-<mat-toolbar style="font-size:0.7vw;margin: 0;background-color:#008e8e;">
+<mat-toolbar style="font-size:0.7vw;margin: 0;color:#2b2d42;background-color: #cacfd2;">
 <mat-toolbar-row style="margin: 0;">
    <span class="example-spacer">AJOUTER UN NOUVEAU PROFIL</span>
-   <button class="btn-dialog-close" style="background-color: #f88c0a;" #close mat-stroked-button (click)="onClose()" tabIndex='-1'>Fermer<mat-icon>clear</mat-icon></button>
+   <button class="btn-dialog-close" style="background-color: #2b2d42;color: #ffffff;" #close mat-stroked-button (click)="onClose()" tabIndex='-1'>Fermer<mat-icon>clear</mat-icon></button>
 </mat-toolbar-row>
 </mat-toolbar>
 <form #loginFormulaire="ngForm">
@@ -12,14 +12,14 @@
    <mat-divider></mat-divider>
    <input text required ngModel name="libelle" type="text" class="form-control" id="libelle">
    <mat-divider></mat-divider>
-   <button [disabled]="loginFormulaire.invalid" style="width: 100%;" class="btn btn-primary" (click)="post(loginFormulaire)">
+   <button [disabled]="loginFormulaire.invalid" style="width: 100%;background-color:#2b2d42;color: #ffffff;" class="btn" (click)="post(loginFormulaire)">
       Ajouter
    </button>
 </form>
 </div>
 <div style="width: 50%;float: right;">
    <div class="card text-center">
-      <div class="card-header" style="background-color: #008e8e;">
+      <div class="card-header" style="color:#2b2d42;background-color: #cacfd2;">
         Details
       </div>
       <div class="card-body">

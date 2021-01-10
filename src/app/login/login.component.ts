@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       password: new FormControl('',[Validators.required])
     })
   }
-  
+   
   loginProcess(){
        if (this.formGroup.valid) {
           this.authService.login(this.formGroup.value).subscribe(result=>{
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
               {
                   this.router.navigate(['/admin/profils']);
               }else
-              {
+              { 
                   this.authService.deconnected();
               }
            }

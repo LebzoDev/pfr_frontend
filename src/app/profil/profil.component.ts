@@ -25,7 +25,11 @@ export class ProfilComponent implements OnInit {
   editProfil: boolean=false;
   editDataSend:Profil=new Profil();
   pourcent: string = '80%';
-  constructor(private breakpointObserver: BreakpointObserver,private router: Router,private profilService:ProfilService,private authService: AuthServiceService,) { }
+  constructor(
+      private breakpointObserver: BreakpointObserver,
+      private router: Router,
+      private profilService:ProfilService,
+      private authService: AuthServiceService,) { }
 
 
     isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -74,6 +78,7 @@ getP(){
 
   onCreateProfil(){
      this.addProfil = true;
+     console.log("c bon")
      console.log(this.addProfil);
   }
 

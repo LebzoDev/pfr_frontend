@@ -1,24 +1,68 @@
-<div fxLayoutAlign="center center" fxFlexFill class="main-div">
-    <mat-card fxFlex="60">
-        <mat-toolbar color="primary">Ajouter une nouvelle utilisateur</mat-toolbar>
+<mat-sidenav-container class="sidenav-container" >
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLinkActive="active" [routerLink]="['/','admin','profils']"> GESTION PROFIL</a>
+      <a mat-list-item  routerLinkActive="active">GESTION UTILISATEURS</a>
+      <a mat-list-item [routerLink]="['/','admin','profil_sorties']">GESTION PROFIL SORTIE</a>
+      <a mat-list-item [routerLink]="['/','admin','competences']">GESTION COMPETENCES</a>
+      <a mat-list-item routerLinkActive="active" [routerLink]="['/','admin','promos']">GETSION PROMO</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar  style="display: flex;justify-content: space-between;align-items: center;background-color: #cacfd2;">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span> <button  type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+       >
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button></span>
+    <span> Gestion des Users</span>
+    <mat-card-actions align="end" style="float: right;" >
+      <button mat-flat-button mat-button style="background-color: #2b2d42;color: #ffffff;" (click)="loggout()"> Deconnecter </button>
+    </mat-card-actions>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+
+ 
+
+
+
+
+
+
+    <hr>
+<div  fxFlexFill class="main-div">
+  
+    <mat-card fxFlex="80" style="margin: 0 auto;height:max-content;">
+        <mat-toolbar style="background-color: #85929e;color: #ffffff;text-align: center;">
+          <span style="margin: 0 auto;"> EDITER UN UTILISATEUR</span></mat-toolbar>
         <p>
-          <mat-toolbar>
-           <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-            <mat-icon>menu</mat-icon>
-          </button>
-          <span>My App</span>
-          <span class="example-spacer"></span>
-          <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-            <mat-icon>favorite</mat-icon>
-          </button>
-          <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-           <mat-icon>share</mat-icon>
-         </button>
-         <button class="btn-dialog-close" mat-stroked-button (click)='onClose()' tabIndex='-1'><mat-icon>clear</mat-icon></button>
+        <mat-toolbar>
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span>Veuillez remplir les champs</span>
+            <span class="example-spacer"></span>
+        
+         <button class="btn-dialog-close" mat-stroked-button (click)='onClose()' tabIndex='-1'>
+           <span>Retour</span>
+           <mat-icon>clear</mat-icon></button>
         </mat-toolbar>
         </p>
-        <form fxLayout="stretch" fxLayout="column" class="login-form" [formGroup]="formGroup" (ngSubmit)='onEditUserProcess()'>
-            
+        <form fxLayout="stretch" fxLayout="column" class="login-form" [formGroup]="formGroup" (ngSubmit)='onEditUserProcess()'>  
           <table class="example-full-width">
           <tr>
           <td>
@@ -38,33 +82,42 @@
         <td>
         <mat-form-field class="example-full-width">
             <mat-label>Prenom(s)</mat-label>
-            <input matInput placeholder="Prenom" [(ngModel)]="data.prenom" formControlName="prenom">
+            <input matInput placeholder="Prenom" formControlName="prenom">
         </mat-form-field>
       </td>
       <td>
           <mat-form-field class="example-full-width">
             <mat-label>Nom</mat-label>
-              <input matInput type="text" placeholder="Nom" [(ngModel)]="data.nom" formControlName="nom">
+              <input matInput type="text" placeholder="Nom" formControlName="nom">
           </mat-form-field>
       </td>
     </tr>
-      </table>
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Enter your email</mat-label>
+          <input matInput placeholder="pat@example.com" [formControl]="email" formControlName="email" required>
+          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </td>
+      <td>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Enter your email</mat-label>
-      <input matInput placeholder="pat@example.com" [formControl]="email" [(ngModel)]="data.email" formControlName="email" required>
-      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    <mat-form-field class="example-full-width">
+      <mat-label>Donner le profil</mat-label>
+      <mat-select formControlName="profil" required>
+        <mat-option *ngFor="let profil of profils " [value]="profil.id">
+          {{profil.libelle}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
-
-    <div class="form-group">
-      <label for="file">Choose File</label>
-      <input type="file" name="photo"
-             id="file" #event (change)='handleFileInput($event.target)'>
-      </div>
-
-            <button mat-raised-button color="primary"  type="submit">Soumettre
-            </button>
-
-          </form>      
-    </mat-card>
+      </td>
+    </tr>
+      </table>
+          <div class="form-group">
+            <label for="file">Choose File</label>
+            <input type="file" name="photo" id="file" #event (change)='handleFileInput($event.target)'>
+          </div>
+          <button mat-raised-button style="background-color: #2b2d42;color: #ffffff;"  type="submit">Soumettre</button>
+      </form>      
+  </mat-card>
 </div>

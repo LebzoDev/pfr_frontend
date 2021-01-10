@@ -6,13 +6,14 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLinkActive="active" [routerLink]="['/','admin','profils']"> GESTION PROFIL</a>
-      <a mat-list-item >GESTION UTILISATEURS</a>
-      <a mat-list-item [routerLink]="['/','admin','profil_sorties']">PROFIL DE SORTIE</a>
-      <a mat-list-item [routerLink]="['/','admin','competences']">COMPETENCES</a>
+      <a mat-list-item  routerLinkActive="active">GESTION UTILISATEURS</a>
+      <a mat-list-item [routerLink]="['/','admin','profil_sorties']">GESTION PROFIL SORTIE</a>
+      <a mat-list-item [routerLink]="['/','admin','competences']">GESTION COMPETENCES</a>
+      <a mat-list-item routerLinkActive="active" [routerLink]="['/','admin','promos']">GETSION PROMO</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar  style="display: flex;justify-content: space-between;align-items: center;background-color: #008e8e;">
+    <mat-toolbar  style="display: flex;justify-content: space-between;align-items: center;background-color: #cacfd2;">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -30,7 +31,7 @@
     </button></span>
     <span> Gestion des Users</span>
     <mat-card-actions align="end" style="float: right;" >
-      <button mat-flat-button mat-button style="background-color: #f88c0a;" (click)="loggout()"> Deconnecter </button>
+      <button mat-flat-button mat-button style="background-color: #2b2d42;color: #ffffff;" (click)="loggout()"> Deconnecter </button>
     </mat-card-actions>
     </mat-toolbar>
     <!-- Add Content Here -->
@@ -40,11 +41,12 @@
   <!--div style="float: right; width: 25%;height: 80vh;background-color: red;">
     <app-add-profil></app-add-profil>
   </div-->
-  <div style="margin: 2vw auto;width: 80%;font-weight: bold;background-color: #f88c0a;">
-    <button mat-raised-button (click)="onAddUser()">
-      <mat-icon color="primary">add</mat-icon> Ajouter un nouveau profil
+  <div style="margin: 2vw auto;width: 80%;font-weight: bold;">
+    <button class="btn btn-success"  mat-raised-button (click)="onAddUser()">
+      <mat-icon>add</mat-icon> Ajouter un nouveau profil
     </button>
-  <table style=" width: 100%; margin:0 auto;background-color:#008e8e;color: #ffffff;" mat-table matSort [dataSource]="datasource" class="mat-elevation-z8">
+    <hr>
+  <table style=" width: 100%; margin:0 auto;background-color:#85929e;color: #ffffff;" mat-table matSort [dataSource]="datasource" class="mat-elevation-z8">
     
     
     <!-- Position Column --> 
@@ -62,25 +64,25 @@
     <!-- Prenom Column -->
     <ng-container matColumnDef="prenom">
       <th mat-header-cell mat-sort-header *matHeaderCellDef> Prenom </th>
-      <td mat-cell *matCellDef="let element" style="color: #ffffff;"> {{element.prenom}} </td>
+      <td mat-cell *matCellDef="let element" id="{{element.id}}_prenom" style="color: #ffffff;"> {{element.prenom}} </td>
     </ng-container>
 
     <!-- Nom Column -->
     <ng-container matColumnDef="nom">
       <th mat-header-cell mat-sort-header *matHeaderCellDef> Nom </th>
-      <td mat-cell *matCellDef="let element" style="color: #ffffff;"> {{element.nom}} </td>
+      <td mat-cell *matCellDef="let element" id="{{element.id}}_nom" style="color: #ffffff;"> {{element.nom}} </td>
     </ng-container>
 
     <!-- Email Column -->
     <ng-container matColumnDef="email">
       <th mat-header-cell mat-sort-header *matHeaderCellDef> Email </th>
-      <td mat-cell *matCellDef="let element" style="color: #ffffff;"> {{element.email}} </td>
+      <td mat-cell *matCellDef="let element" id="{{element.id}}_email" style="color: #ffffff;"> {{element.email}} </td>
     </ng-container>
 
     <!-- Profil Column -->
     <ng-container matColumnDef="profil">
       <th mat-header-cell mat-sort-header *matHeaderCellDef> Profil </th>
-      <td mat-cell *matCellDef="let element" style="color: #ffffff;"> {{element.profil.libelle}} </td>
+      <td mat-cell *matCellDef="let element" id="{{element.id}}_profil" style="color: #ffffff;" [contentEditable]="edit"> {{element.profil.libelle}} </td>
     </ng-container>
   
     <!-- Archive Column -->
@@ -93,7 +95,7 @@
     <ng-container matColumnDef="Edit">
       <th mat-header-cell *matHeaderCellDef>Edit</th>
       <td mat-cell *matCellDef="let row">
-        <button mat-icon-button style="background-color: #f88c0a;font-size: 0.5vw;padding:0%;overflow:hidden;border: 2px solid #ffffff;" (click)="onEditUser(row)">Edit </button>
+        <button mat-icon-button id="{{row.id}}" style="background-color: #cacfd2;color:#2d2b42;font-size: 0.5vw;padding:0%;overflow:hidden;border: 2px solid #2d2b42;" (click)="onEditUser(row)">{{editButton}}</button>
       </td>
     </ng-container>
   
@@ -101,12 +103,12 @@
     <ng-container matColumnDef="Delete">
       <th mat-header-cell *matHeaderCellDef>Delete</th>
       <td mat-cell *matCellDef="let row">
-        <button mat-icon-button style="background-color: #f88c0a;font-size: 0.5vw;padding:0%;overflow:hidden;border: 2px solid #ffffff;" (click)="onDeleteUser(row)">Delete </button>
+        <button mat-icon-button style="background-color: #cacfd2;color: #2d2b42;font-size: 0.5vw;padding:0%;overflow:hidden;border: 2px solid #2d2b42;" (click)="onDeleteUser(row)">Delete </button>
       </td>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row  *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
   <mat-paginator [length]="100"
                 [pageSize]="2"

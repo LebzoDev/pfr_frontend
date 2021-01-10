@@ -1,0 +1,124 @@
+<div class="container" style="text-align: center;padding: 0 auto;">
+    <mat-card style="background-color: #cacfd2">
+        <mat-chip-list  class="mat-chip-list-stacked" aria-label="Color selection">
+            <mat-chip style="justify-self: center;display: flex;background-color: #2b2d42;width: 100%;" fxFlex="100" selected>
+              <img style="width: 4vw;height: 4vw;border-radius: 50px;" src="assets/image/001.jpeg">
+                  <span style="float: right;margin: 0 auto;">CREER UN NOUVEAU REFERENTIEL</span> 
+            </mat-chip> 
+          </mat-chip-list>
+    </mat-card>
+    <form [formGroup]="addRefForm" (ngSubmit)="AddReferentiel()">
+    <mat-card class="example-card" style="background-color: #cacfd2;">
+       
+          <mat-card>
+                <div fxFlex="20" style="background-color:#2b2d42;color: #ffffff; text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
+                    Libellé du referentiel
+                </div>
+                <mat-form-field fxFlex="70" style="width: 70%;margin: 0 auto;">
+                      <mat-label>Veuillez donner un libellé au Groupe de competences</mat-label>
+                      <input matInput formControlName="libelle" placeholder="Ex. Pizza">
+                </mat-form-field>
+          </mat-card>
+        <hr>
+          <mat-card >
+              <div fxFlex="20" style="background-color:#2b2d42;color: #ffffff; text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
+                    Presentation
+              </div>
+              <mat-form-field fxFlex="70" style="margin: 0 auto;">
+                   <mat-label>Veuillez décrire la présentation</mat-label>
+                   <textarea matInput formControlName="presentation" placeholder="Ex. It makes me feel..."></textarea>
+              </mat-form-field>
+          </mat-card>
+        <hr>
+        <!---->
+        <mat-card>
+            <div fxFlex="20" style="background-color:#2b2d42;color: #ffffff; text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
+                GRoupe Competences Associées
+          </div>
+          <mat-form-field fxFlex="70" style="margin: 0 auto;">
+            <mat-label>Groupes de Competences disponibles</mat-label>
+            <mat-chip-list #chipList aria-label="Fruit selection" formControlName="groupCompetences" [(ngModel)]="groupCompetences" >
+              <mat-chip *ngFor="let groupCompetence of groupCompetences; let i = index" 
+                       [selectable]="selectable"
+                       [removable]="removable" 
+                       (removed)="removeGRoupCompetenceEvent(groupCompetence)">
+                        {{groupCompetence.libelle}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="Nouvelle groupe de competence..."
+                     [matChipInputFor]="chipList"
+                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                     [matChipInputAddOnBlur]="addOnBlur"
+                     (matChipInputTokenEnd)="AddGroupCompetenceEvent($event)"  >
+            </mat-chip-list>
+          </mat-form-field>     
+        </mat-card>
+        <!---->
+            <hr>
+            <section style="width: 100%;">
+                <mat-card>
+                    <mat-chip-list fxFlex>
+                        <mat-chip class="btn btn-success" style="justify-self:center;display:flex;margin: 0 auto;width:70%;" color="primary" selected>
+                          <label for="file-upload" style="width: 100%;margin: 0;cursor:pointer;">
+                       <span style="margin: 0 auto;"> CHarger le fichier du programme</span> </label>      
+                        <input id="file-upload" type="file" accept=".pdf" formControlName="pdfFile"  (change)="handleFileInput($event)"/>
+                        </mat-chip>
+                  </mat-chip-list>
+                </mat-card>
+              </section>
+            <hr>
+            <!---->
+           
+            <mat-card>
+                <div fxFlex="20" style="background-color:#2b2d42;color: #ffffff; text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
+                    Criteres d'Evaluation
+              </div>
+              <mat-form-field fxFlex="70" style="margin: 0 auto;">
+                <mat-label>Competences disponibles</mat-label>
+                <mat-chip-list #evaluations aria-label="Fruit selection" formControlName="evaluation" [(ngModel)]="evaluation" >
+                  <mat-chip *ngFor="let evaluationCrit of evaluation; let i = index" 
+                           [selectable]="selectable"
+                           [removable]="removable" 
+                           (removed)="removeEvaluationCriteriaEvent(evaluationCrit)">
+                            {{evaluationCrit}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                  <input placeholder="Nouvelle competence..."
+                         [matChipInputFor]="evaluations"
+                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                         [matChipInputAddOnBlur]="addOnBlur" 
+                         (matChipInputTokenEnd)="addEvaluationCriteriaEvent($event)"  >
+                </mat-chip-list>
+              </mat-form-field>     
+            </mat-card>
+            <!---->
+            <hr>
+            <mat-card>
+                <div fxFlex="20" style="background-color:#2b2d42;color: #ffffff; text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
+                    Criteres d'Admission
+              </div>
+              <mat-form-field fxFlex="70" style="margin: 0 auto;">
+                <mat-label>Critères d'admission</mat-label>
+                <mat-chip-list #admissions aria-label="Fruit selection" formControlName="admission" [(ngModel)]="admission" >
+                  <mat-chip *ngFor="let admissionCrit of admission; let i = index" 
+                           [selectable]="selectable"
+                           [removable]="removable" 
+                           (removed)="removeAdmissionCriteriaEvent(admissionCrit)">
+                            {{admissionCrit}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                  <input placeholder="Nouvelle competence..."
+                         [matChipInputFor]="admissions"
+                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                         [matChipInputAddOnBlur]="addOnBlur"
+                         (matChipInputTokenEnd)="addAdmissionCriteriaEvent($event)"  >
+                </mat-chip-list>
+              </mat-form-field>     
+            </mat-card>
+          </mat-card>
+          <br>
+          <mat-card-actions style="margin:0 auto; text-align: center;width: 70%;" >
+            <button type="submit" [disabled]="addRefForm.invalid" style="width: 100%;" class="btn btn-success" mat-raised-button >Soumettre</button>
+          </mat-card-actions>
+        </form>
+  </div>

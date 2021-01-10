@@ -1,0 +1,62 @@
+<div class="container" style="text-align: center;padding: 0 auto;">
+    <mat-card style="background-color: #cacfd2">
+        <mat-chip-list  class="mat-chip-list-stacked" aria-label="Color selection">
+            <mat-chip style="justify-self: center;display: flex;background-color: #2b2d42;width: 100%;" fxFlex="100" selected>
+              <img style="width: 4vw;height: 4vw;border-radius: 50px;" src="assets/image/001.jpeg">
+                  <span style="float: right;margin: 0 auto;">Ajout de groupe de competences</span> 
+            </mat-chip> 
+          </mat-chip-list>
+    </mat-card>
+    <form [formGroup]="addGRoupCompForm" (ngSubmit)="AddGroupCompetence()">
+    <mat-card class="example-card" style="background-color: #cacfd2;">
+       
+          <mat-card>
+                <div fxFlex="20" style="background-color:#2b2d42;color: #ffffff; text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
+                    Libellé Groupe Competence
+                </div>
+                <mat-form-field fxFlex="70" style="width: 70%;margin: 0 auto;">
+                      <mat-label>Veuillez donner un libellé au Groupe de competences</mat-label>
+                      <input matInput formControlName="libelle" placeholder="Ex. Pizza">
+                </mat-form-field>
+          </mat-card>
+        <hr>
+          <mat-card >
+              <div fxFlex="20" style="background-color:#2b2d42;color: #ffffff; text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
+                    Description
+              </div>
+              <mat-form-field fxFlex="70" style="margin: 0 auto;">
+                   <mat-label>Veuillez faire une description</mat-label>
+                   <textarea matInput formControlName="descriptif" placeholder="Ex. It makes me feel..."></textarea>
+              </mat-form-field>
+          </mat-card>
+        <hr>
+            <mat-card>
+                <div fxFlex="20" style="background-color:#2b2d42;color: #ffffff; text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
+                    Competences Associées
+              </div>
+              <mat-form-field fxFlex="70" style="margin: 0 auto;">
+                <mat-label>Competences disponibles</mat-label>
+                <mat-chip-list #chipList aria-label="Fruit selection" formControlName="competences" [(ngModel)]="competences" >
+                  <mat-chip *ngFor="let competence of competences; let i = index" 
+                           [selectable]="selectable"
+                           [removable]="removable" 
+                           (removed)="remove(competence)">
+                            {{competence.libelle}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                  <input placeholder="Nouvelle competence..."
+                         [matChipInputFor]="chipList"
+                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                         [matChipInputAddOnBlur]="addOnBlur"
+                         (matChipInputTokenEnd)="add($event)"  >
+                </mat-chip-list>
+              </mat-form-field>     
+            </mat-card>
+            
+          </mat-card>
+          <br>
+          <mat-card-actions style="margin:0 auto; text-align: center;width: 70%;" >
+            <button type="submit" style="width: 100%;" class="btn btn-success" mat-raised-button >Soumettre</button>
+          </mat-card-actions>
+        </form>
+  </div>

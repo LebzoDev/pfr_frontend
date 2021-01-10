@@ -1,0 +1,145 @@
+<div class="container" >
+    <form [formGroup]="addCompetenceForm" (ngSubmit)="addCompetence()">
+    <mat-card style="background-color: #cacfd2">
+    <section style="width: 100%;">
+      <mat-card fxFlex="15">
+        <img style="float:left;width:4vw;height: 4vw; border-radius: 50px;" src="assets/image/001.jpeg">
+    </mat-card>
+    <mat-card fxFlex="85">
+            <mat-form-field style="width:50%">
+                <mat-label>Groupe de competences</mat-label>
+                <mat-select formControlName="idgroupcompetence" required>
+                  <mat-option>Choisir une competence</mat-option>
+                  <mat-option *ngFor="let grpcompetence of grpcompetences" [value]="grpcompetence.id">
+                    {{grpcompetence.libelle}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-slide-toggle [checked]="checked" style="float: right;">Associer à plusieurs</mat-slide-toggle>
+
+        </mat-card>
+    </section>
+          <hr>
+        <mat-card>
+            <mat-card fxFlex="15" >
+                <mat-card style="text-align: center;justify-content: center;align-items: center;display: flex;background-color: #85929e;font-weight: bold;">
+                Libelle Competence
+            </mat-card>
+            </mat-card>
+            <mat-card fxFlex="35">
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Veuillez donner le libellé</mat-label>
+                    <input matInput placeholder="Donnez un libelle"  formControlName="libelle">
+                </mat-form-field>
+            </mat-card>
+            <mat-card fxFlex="15" >
+                <mat-card style="text-align: center;justify-content: center;align-items: center;display: flex;background-color: #85929e;font-weight: bold;">
+                Description Competence
+            </mat-card>
+            </mat-card>
+            <mat-card fxFlex="35">
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Veuillez donner une description</mat-label>
+                    <input matInput placeholder="Donnez un descriptif"  formControlName="descriptif">
+                </mat-form-field>
+        </mat-card>
+        </mat-card>
+        
+        </mat-card>
+          <mat-card class="example-card" style="background-color: #cacfd2;">
+            <section>
+                <mat-card fxFlex="15">
+                <mat-card  style="text-align: center;justify-content: center;align-items: center;display: flex;background-color: #85929e;font-weight: bold;">
+                    Libelle
+                </mat-card>
+                </mat-card>
+                <mat-card *ngIf="niveau1" fxFlex>
+                    <mat-form-field style="width: 100%;">
+                        <mat-label>Veuillez donner le libelle du niveau 1</mat-label>
+                        <input matInput placeholder="Entrer le libelle correspondant" [(ngModel)]="libelle1"  formControlName="libelle1" value="{{libelle1}}">
+                    </mat-form-field>
+                </mat-card>
+                <mat-card *ngIf="niveau2" fxFlex>
+                    <mat-form-field style="width: 100%;">
+                        <mat-label>Veuillez donner le libelle du niveau 2</mat-label>
+                        <input matInput placeholder="Entrer le libelle correspondant" [(ngModel)]="libelle2"  formControlName="libelle2" value="{{libelle2}}">
+                    </mat-form-field>
+                </mat-card>
+                <mat-card *ngIf="niveau3" fxFlex>
+                    <mat-form-field style="width: 100%;">
+                        <mat-label>Veuillez donner le libelle du niveau 3</mat-label>
+                        <input matInput placeholder="Entrer le libelle correspondant" [(ngModel)]="libelle3"  formControlName="libelle3" value="{{libelle3}}">
+                    </mat-form-field>
+                </mat-card>
+             <mat-card fxFlex>
+             <div class="example-button-row">
+               <button (click)="niveau1_Activate()" mat-raised-button color="primary">Niveau 1</button>
+               <button (click)="niveau2_Activate()" mat-raised-button color="accent">Niveau 2</button>
+               <button (click)="niveau3_Activate()" mat-raised-button color="warn">Niveau 3</button>
+             </div>
+            </mat-card>
+           </section>
+             <!--Niveau 1-->
+            <section *ngIf="niveau1" style="width:100%">
+            <mat-card fxFlex="50">
+              <mat-card style="background-color: #85929e;">
+                Criteres d'evaluation (Niveau 1)
+              </mat-card>
+              <mat-card >
+                  <input style="height: 15vh;width: 100%;" [(ngModel)]="critereDev1" formControlName="critereDev1" value="{{critereDev1}}" type="text">
+              </mat-card>
+            </mat-card>
+            <mat-card fxFlex="50">
+              <mat-card style="background-color: #85929e;">
+                Groupe d'actions (Niveau 1)
+              </mat-card>
+              <mat-card >
+                  <input style="height: 15vh;width: 100%;" [(ngModel)]="groupDac1" formControlName="groupDac1" value="{{groupDac1}}" type="text">
+              </mat-card>
+            </mat-card>
+          </section>
+            <!--Niveau 2-->
+            <section *ngIf="niveau2" style="width:100%">
+                <mat-card fxFlex="50">
+                  <mat-card style="background-color: #85929e;">
+                    Criteres d'evaluation (Niveau 2)
+                  </mat-card>
+                  <mat-card >
+                      <input style="height: 15vh;width: 100%;" [(ngModel)]="critereDev2" formControlName="critereDev2" value="{{critereDev2}}" type="text">
+                  </mat-card>
+                </mat-card>
+                <mat-card fxFlex="50">
+                  <mat-card style="background-color: #85929e;">
+                    Groupe d'actions (Niveau 2)
+                  </mat-card>
+                  <mat-card >
+                      <input style="height: 15vh;width: 100%;" [(ngModel)]="groupDac2" formControlName="groupDac2" value="{{groupDac2}}" type="text">
+                  </mat-card>
+                </mat-card>
+              </section>
+                <!--Niveau 3-->
+            <section *ngIf="niveau3" style="width:100%">
+                <mat-card fxFlex="50">
+                  <mat-card id="critDev_1" style="background-color: #85929e;">
+                    Criteres d'evaluation (Niveau 3)
+                  </mat-card>
+                  <mat-card >
+                      <input id="critDev_1" style="height: 15vh;width: 100%;" [(ngModel)]="critereDev3" formControlName="critereDev3" value="{{critereDev3}}" type="text">
+                  </mat-card>
+                </mat-card>
+                <mat-card fxFlex="50">
+                  <mat-card style="background-color: #85929e;">
+                    Groupe d'actions (Niveau 3)
+                  </mat-card>
+                  <mat-card >
+                      <input id="groupDac_1" style="height: 15vh;width: 100%;" [(ngModel)]="groupDac3" formControlName="groupDac3" value="{{groupDac3}}" type="text">
+                  </mat-card>
+                </mat-card>
+              </section>
+          <br>
+            <mat-card-actions style="margin:0 auto; text-align: center;width: 70%;">
+              <button class="btn btn-success" style="width: 100%;" mat-raised-button>Soumettre</button>
+            </mat-card-actions>
+          </mat-card>
+    </form>
+  </div>

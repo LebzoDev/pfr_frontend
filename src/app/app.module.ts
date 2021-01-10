@@ -45,7 +45,19 @@ import { AddProfilSortieComponent } from './profil-sortie/add-profil-sortie/add-
 import { EditProfilSortieComponent } from './profil-sortie/edit-profil-sortie/edit-profil-sortie.component';
 import { CompetencesComponent } from './competences/competences.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle'; 
-import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { PromoComponent } from './promo/promo.component';
+import { HeaderNavComponent } from './accueil/header-nav/header-nav.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import { MatNativeDateModule } from '@angular/material/core';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import {MatRadioModule} from '@angular/material/radio';
+import { AddCompetenceComponent } from './competences/add-competence/add-competence.component';
+import { AddGroupCompetenceComponent } from './competences/addGroupCompetence/add-group-competence/add-group-competence.component'; 
+import { ToastrModule } from 'ngx-toastr';
+import { AddReferentielComponent } from './promo/add-referentiel/add-referentiel.component';
+
 
 @NgModule({
   declarations: [
@@ -64,7 +76,12 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     AddProfilComponent,
     AddProfilSortieComponent,
     EditProfilSortieComponent,
-    CompetencesComponent
+    CompetencesComponent,
+    PromoComponent,
+    HeaderNavComponent,
+    AddCompetenceComponent,
+    AddGroupCompetenceComponent,
+    AddReferentielComponent
   ],
   imports: [
     BrowserModule,
@@ -98,12 +115,20 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatExpansionModule,
     MatFormFieldModule,
     MatButtonToggleModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxDropzoneModule,
+    ReactiveFormsModule,
+    MatRadioModule,
+    ToastrModule.forRoot()
+
   ],
   providers: [AuthServiceService,AuthGuard,EventsService,ProfilService,{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
-    multi: true
+    multi: true 
   }],
   bootstrap: [AppComponent],
   entryComponents: [AddProfilComponent]

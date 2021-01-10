@@ -13,6 +13,8 @@ import { AddUserComponent } from './users/admin/add-user/add-user.component';
 import { EditUserComponent } from './users/admin/edit-user/edit-user.component';
 import { ProfilSortieComponent } from './profil-sortie/profil-sortie.component';
 import { CompetencesComponent } from './competences/competences.component';
+import { PromoComponent } from './promo/promo.component';
+
 
 
 const routes: Routes = [
@@ -21,14 +23,24 @@ const routes: Routes = [
     component: AccueilComponent
    },
    {
+    path: 'admin/users/add',
+    component:AddUserComponent
+   },
+   {
+    path: 'admin/users/edit',
+    component:EditUserComponent
+   },
+   {
     path:'admin/users',
     component: AdminComponent,
     children:[
       {
-        path: 'add', component:AddUserComponent
+        path: 'add',
+        component:AddUserComponent
       },
       {
-        path: 'edit',component:EditUserComponent
+        path: 'edit',
+        component:EditUserComponent
       }
     ]
    },
@@ -50,6 +62,12 @@ const routes: Routes = [
     path:'admin/competences',
     canActivate:[AuthGuard],
     component: CompetencesComponent
+   },
+
+   {
+    path:'admin/promos',
+    canActivate:[AuthGuard],
+    component: PromoComponent
    },
   {
     path:'not_found',

@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~11.0.3",
+    "@angular/animations": "^11.0.5",
     "@angular/cdk": "^11.0.2",
     "@angular/common": "~11.0.3",
     "@angular/compiler": "^11.0.4",
@@ -29,6 +29,8 @@
     "angular-jwt": "^0.1.11",
     "bootstrap": "^4.5.3",
     "jwt-decode": "^3.1.2",
+    "ngx-dropzone": "^2.3.0",
+    "ngx-toastr": "^13.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
