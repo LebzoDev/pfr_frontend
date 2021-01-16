@@ -39,8 +39,8 @@
         <section class="container" style="border: 2px solid #85929e;width: 100%;justify-content: space-between;flex: 1 1 auto;align-items: center;">
           <div class="example-button-row">
             <button mat-button style="background-color:  #85929e;">Liste Promos</button>
-            <button mat-button style="background-color:  #85929e;" >Liste Referentiels</button>
-            <button mat-button style="background-color:  #85929e;">Ajouter un referentiel</button>
+            <button mat-button [style.background-color]="listReferentielsDisplay ? '#28a745': '#85929e'" style="background-color:  #85929e;" >Liste Referentiels</button>
+            <button mat-button [style.background-color]="addReferentielDisplay ? '#28a745': '#85929e'">Ajouter un referentiel</button>
             <button mat-button style="background-color:  #85929e;">Ajouter une promo</button>
           </div>
         </section>
@@ -294,3 +294,7 @@
     <!--Add Referentiel Display-->
     <app-add-referentiel *ngIf="addReferentielDisplay"></app-add-referentiel>
     <!--END-->
+
+    <!--List Referentiels Display-->
+    <app-list-referentiels *ngIf="listReferentielsDisplay"> </app-list-referentiels>
+    <!---->

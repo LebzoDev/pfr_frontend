@@ -3,6 +3,7 @@ import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
 import { AuthServiceService } from '../../auth-service.service';
 import { ProfilService } from '../../service/profil.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-profil',
@@ -12,7 +13,9 @@ import { ProfilService } from '../../service/profil.service';
 export class AddProfilComponent implements OnInit {
   formGroup:any = FormGroup;
   @Output() close = new EventEmitter<boolean>();
-  constructor(private profilService: ProfilService) { }
+  constructor(
+      private profilService: ProfilService,
+      private toash:ToastrService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -34,6 +37,9 @@ export class AddProfilComponent implements OnInit {
     .subscribe(
       (result) => {
         console.log('Enregistrement terminé !'+result);
+        this.toash.success("Un nouveau profil ajouté avec succes !!!",`${formulaire.value.libelle} added`,{
+            closeButton:true
+        });
         this.onClose();
       },
       (error) => {

@@ -34,6 +34,7 @@ export class EditProfilSortieComponent implements OnInit {
         this.onClose();
       },
       (error) => {
+        console.log('error sur profil sortie');
         console.log('Erreur ! : ' + error);
       }
     );

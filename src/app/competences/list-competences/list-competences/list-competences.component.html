@@ -1,0 +1,61 @@
+<div class="container" style="text-align: center;padding: 0 auto;">
+    <mat-card style="background-color: #cacfd2">
+        <mat-chip-list  class="mat-chip-list-stacked" aria-label="Color selection">
+            <mat-chip style="justify-self: center;display: flex;background-color: #2b2d42;width: 100%;" fxFlex="100" selected>
+              <img style="width: 4vw;height: 4vw;border-radius: 50px;" src="assets/image/001.jpeg">
+                  <span style="float: right;margin: 0 auto;font-weight: bold;">LISTE DE COMPETENCES</span> 
+            </mat-chip> 
+          </mat-chip-list>
+    </mat-card>
+    <mat-card style="width: 40%;float: left;">
+           <section style="display: flex;justify-content: center;  margin-left: 3vw;">
+             <label >GRoupe de competences:</label>
+              <select style="width: 50%;margin:  0 auto;text-align: center;">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </section>
+            <hr>
+            <div style="width: 100%;height: 40vh;overflow: scroll;">
+              <mat-card style="background-color: #cacfd2;cursor: pointer;" *ngFor="let element of tabs">
+                  {{element}}
+              </mat-card>
+              <mat-divider></mat-divider>
+            </div>
+    </mat-card>
+    <mat-card style="width: 60%;float: right;">
+      <hr>
+      <section>
+       <div class="example-label" style="text-align: center;">Niveaux:</div>
+       <div class="example-button-row">
+         <button mat-raised-button color="primary">Niveau 1</button>
+         <button mat-raised-button color="accent">Niveau 2</button>
+         <button mat-raised-button color="warn">Niveau 3</button>
+       </div>
+     </section>
+      <section style="width:100%">
+      <mat-card fxFlex="50">
+        <mat-card style="background-color: #85929e;">
+          Criteres d'evaluation
+        </mat-card>
+        <mat-card >
+            <input style="height: 15vh;width: 100%;" type="text">
+        </mat-card>
+      </mat-card>
+      <mat-card fxFlex="50">
+        <mat-card style="background-color: #85929e;">
+          Groupe d'actions
+        </mat-card>
+        <mat-card >
+            <input style="height: 15vh;width: 100%;" type="text">
+        </mat-card>
+      </mat-card>
+    </section>
+    <br>
+      <mat-card-actions style="margin:0 auto; text-align: center;width: 70%;" class="btn btn-success">
+        <button mat-button>Soumettre</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>

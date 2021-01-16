@@ -37,6 +37,7 @@ export class PromoComponent implements OnInit {
   promoForm: any = FormGroup ;
   addPromoDisplay:boolean=false;
   addReferentielDisplay:boolean=true;
+  listReferentielsDisplay:boolean=false;
   panelOpenState:boolean=true;
   referentiels : Referentiel[]=[];
   competences: Competence[]=[];

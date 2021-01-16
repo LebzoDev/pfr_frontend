@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map, shareReplay } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -20,6 +21,7 @@ import { map, shareReplay } from 'rxjs/operators';
   styleUrls: ['./profil.component.css']
 })
 export class ProfilComponent implements OnInit {
+
   datasource: Profil[]=[];
   addProfil: boolean=false;
   editProfil: boolean=false;
@@ -29,29 +31,31 @@ export class ProfilComponent implements OnInit {
       private breakpointObserver: BreakpointObserver,
       private router: Router,
       private profilService:ProfilService,
-      private authService: AuthServiceService,) { }
+      private authService: AuthServiceService,
+      private toash:ToastrService) { }
 
-
-    isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
+  ngOnInit(): void {
+        this.getP();
+  }
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+      .pipe(
+          map(result => result.matches),
+          shareReplay());
   
-
   displayedColumns: string[] = ['id', 'libelle', 'archive','Edit','Delete'];
 
-getP(){
-    this.profilService.getProfils()
-       .subscribe(data=>{     
-         console.log(data);
-         this.datasource = data;
-  })
-}
+  getP(){
+      this.profilService.getProfils()
+          .subscribe(data=>{     
+              console.log(data);
+              this.datasource = data;
+      })
+  }
 
   onAddClosed(){
     this.addProfil=false;
     this.getP();
+   
   }
   onEditClosed(){
     this.editProfil=false;
@@ -59,22 +63,9 @@ getP(){
   }
 
  
-
- ngOnInit(): void {
-    this.getP();
-  }
   loggout(){
     this.authService.deconnected();
   }
-
-  // onCreateProfil(){
-  //     const dialogConfig = new MatDialogConfig();
-  //     dialogConfig.disableClose = true;
-  //     dialogConfig.autoFocus = true;
-  //     dialogConfig.width = "60%";
-  //     this.dialog.open(AddProfilComponent ,dialogConfig)
-  //      .afterClosed().subscribe(()=>this.getP());
-  // }
 
   onCreateProfil(){
      this.addProfil = true;
@@ -82,33 +73,22 @@ getP(){
      console.log(this.addProfil);
   }
 
-  // onEditProfil(row:any){
-  //     this.profilService.populateform(row);
-  //     const dialogConfig = new MatDialogConfig();
-  //     dialogConfig.disableClose = true;
-  //     dialogConfig.autoFocus = true;
-  //     dialogConfig.width = "60%";
-  //     //console.log('row',row);
-  //     this.dialog.open(EditProfilComponent, dialogConfig)
-  //     .afterClosed().subscribe(()=>this.getP());
-  // }
-
   onEditProfil(row:any){
     this.editProfil = true;
     this.editDataSend =  row;
-    console.log(row);
   }
 
   onDeleteProfil(row:any){
-    this.profilService.populateform(row);
-    this.profilService.deleteProfil(row)
-      .subscribe(result=>{
-        console.log('Suppression faite');
-        this.getP();
-        //this.router.navigate(['/admin/profils']);
-      },
-      error=>{
-        console.log(error);
-      })
+    if (confirm("Souhaitez vous archiver ce profil ?")) {
+      this.profilService.populateform(row);
+      this.profilService.deleteProfil(row)
+        .subscribe(result=>{
+          this.toash.success("Profil supprimé avec succes !!!",`${row.libelle} archivé`);
+          this.getP();
+        },
+        error=>{
+          console.log(error);
+        })
+    }
   }
 }

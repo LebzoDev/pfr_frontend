@@ -18,13 +18,15 @@ export class AdminComponent {
 
   @Input() edit:string='false';
   editButton:string | undefined ='Editer'; 
+  datasource: any[]=[];
+  displayedColumns: string[] = ['id','photo' ,'prenom','nom','email','profil','archive','Edit','Delete'];
+
   constructor(
       private sanitizer:DomSanitizer,
       private authService:AuthServiceService,
       private adminService:AdminService,
       private breakpointObserver: BreakpointObserver,
       private router:Router) {}
-  datasource: any[]=[];
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -36,8 +38,7 @@ export class AdminComponent {
     formGroup:any = FormGroup;
 
    
-  displayedColumns: string[] = ['id','photo' ,'prenom','nom','email','profil','archive','Edit','Delete'];
-
+  
   getUsers(){
       this.adminService.getUsers()
          .subscribe(data=>{     
@@ -65,6 +66,7 @@ export class AdminComponent {
       ])
     })
   }
+
   getErrorMessage() {
     if (this.email.hasError('required')) {
       return 'You must enter a value';
@@ -88,21 +90,8 @@ onAddUser(){
   this.router.navigate(['admin/users/add']);
 }
 
-// onEditUser(row:any){
-//   //this.adminService.populateform(row);
-//   const dialogConfig = new MatDialogConfig();
-//   dialogConfig.disableClose = true;
-//   dialogConfig.autoFocus = true;
-//   dialogConfig.width = "60%";
-//   dialogConfig.data={id: row.id,prenom: row.prenom,nom:row.nom,username:row.username,password:row.password,email:row.email,photo:row.photo};
-//   this.dialog.open(EditUserComponent, dialogConfig)
-//   .afterClosed().subscribe(()=>this.getUsers());
-// }
-
 onEditUser(row:any){
   var leb = document.getElementById(row.id);
-  // var edit_profil= document.getElementById(row.id+'_profil');
-  // var editContentProfil = edit_profil?.getAttribute('contenteditable');
   var edit_email= document.getElementById(row.id+'_email');
   var editContentEmail = edit_email?.getAttribute('contenteditable');
   var edit_prenom= document.getElementById(row.id+'_prenom');
@@ -136,7 +125,6 @@ onEditUser(row:any){
       edit_email.setAttribute("contenteditable", "false");
     }
   }
-  //this.router.navigate(['admin/users/edit']);
 }
 
 onEditUserclose(row:any){

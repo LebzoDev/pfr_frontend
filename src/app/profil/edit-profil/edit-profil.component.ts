@@ -3,6 +3,7 @@ import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { inputs } from '@syncfusion/ej2-angular-navigations/src/accordion/accordion.component';
 import { ProfilService } from '../../service/profil.service';
 import { Profil } from '../../modele/profil';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-edit-profil',
   templateUrl: './edit-profil.component.html',
@@ -14,12 +15,13 @@ export class EditProfilComponent implements OnInit {
   data:any= this.profilService.form;
   @Output() closed = new EventEmitter<boolean>();
   @Input() editData:Profil = new Profil()
-  constructor(private profilService: ProfilService) { }
+  constructor(
+      private profilService: ProfilService,
+      private toash:ToastrService) { }
 
   ngOnInit(): void {
     //this.initForm();
     this.formGroup = this.profilService.form;
-    //console.log(this.formGroup.value);
   }
 
   // initForm(){
@@ -35,12 +37,12 @@ export class EditProfilComponent implements OnInit {
   put( formulaire: NgForm,editData:Profil){
     this.data.value.libelle = formulaire.value.libelle;
     editData.libelle=formulaire.value.libelle
-    console.log(formulaire.value.libelle)
-    console.log(this.data.value);
     this.profilService.putProfil(editData)
     .subscribe(
       (result) => {
-        console.log('Modification effectuée !'+result);
+        this.toash.success("Le profil a été modifier avec succes !!!",`${formulaire.value.libelle} modified`,{
+          closeButton:true
+      });
         this.onClose();
       },
       (error) => {

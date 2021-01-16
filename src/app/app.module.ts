@@ -57,6 +57,9 @@ import { AddCompetenceComponent } from './competences/add-competence/add-compete
 import { AddGroupCompetenceComponent } from './competences/addGroupCompetence/add-group-competence/add-group-competence.component'; 
 import { ToastrModule } from 'ngx-toastr';
 import { AddReferentielComponent } from './promo/add-referentiel/add-referentiel.component';
+import { ListReferentielsComponent } from './promo/list-referentiels/list-referentiels/list-referentiels.component';
+import { ListCompetencesComponent } from './competences/list-competences/list-competences/list-competences.component';
+import { ListGroupCompetencesComponent } from './competences/list-group-competences/list-group-competences/list-group-competences.component';
 
 
 @NgModule({
@@ -81,7 +84,10 @@ import { AddReferentielComponent } from './promo/add-referentiel/add-referentiel
     HeaderNavComponent,
     AddCompetenceComponent,
     AddGroupCompetenceComponent,
-    AddReferentielComponent
+    AddReferentielComponent,
+    ListReferentielsComponent,
+    ListCompetencesComponent,
+    ListGroupCompetencesComponent
   ],
   imports: [
     BrowserModule,

@@ -6,13 +6,14 @@
 </mat-toolbar-row>
 </mat-toolbar>
 <form #loginFormulaire="ngForm">
-   <label for="libelle">
+   <label for="libelle" style="width: 100%;text-align: center;margin: 0;font-size: 1vw;">
       Libelle
    </label>
    <mat-divider></mat-divider>
    <input text required ngModel name="libelle" type="text" class="form-control" id="libelle">
    <mat-divider></mat-divider>
-   <button [disabled]="loginFormulaire.invalid" style="width: 100%;background-color:#2b2d42;color: #ffffff;" class="btn" (click)="post(loginFormulaire)">
+   <br>
+   <button [disabled]="loginFormulaire.invalid" style="width: 100%;color: #ffffff;" class="btn btn-success" (click)="post(loginFormulaire)">
       Ajouter
    </button>
 </form>
@@ -20,15 +21,15 @@
 <div style="width: 50%;float: right;">
    <div class="card text-center">
       <div class="card-header" style="color:#2b2d42;background-color: #cacfd2;">
-        Details
+        Spécifications
       </div>
       <div class="card-body">
-        <h5 class="card-title">Identification:</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h5 class="card-title">A prendre en compte</h5>
+        <p class="card-text">Fournir un libelle non existant et pas d'espace</p>
+        <a class="btn" style="background-color: #f44336;color: #ffffff;">ATTENTION</a>
       </div>
     </div>
 </div>
-<div class="card text-center card-header" style="width: 100%;margin: 0;">
+<div class="card text-center card-header" style="width: 100%;margin: 0;background-color: #2b2d42;color: #ffffff;">
    Profil Add Part
 </div>

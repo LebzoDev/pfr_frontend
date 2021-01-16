@@ -26,11 +26,15 @@ mat-nav-list a {
     width: 100%;
 }
   
-  td {
+td {
     padding-right: 8px;
-  }
+}
   
-  .example-spacer {
+.example-spacer {
     flex: 1 1 auto;
   }
+input[type="file"] {
+    display:none;
+}
+  
   
