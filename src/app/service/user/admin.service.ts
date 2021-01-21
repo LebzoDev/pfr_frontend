@@ -14,6 +14,18 @@ export class AdminService {
   getUsers(): Observable<any[]>{
     return this.http.get<any[]>(`${apiURL}admin/users?archive=false`,{responseType: 'json'});
   }
+  getAdministrateurs(): Observable<any[]>{
+    return this.http.get<any[]>(`${apiURL}admin/users?archive=false&profil=60`,{responseType: 'json'});
+  }
+  getCM(): Observable<any[]>{
+    return this.http.get<any[]>(`${apiURL}admin/users?archive=false&profil=62`,{responseType: 'json'});
+  }
+  getFormateurs(): Observable<any[]>{
+    return this.http.get<any[]>(`${apiURL}admin/users?archive=false&profil=61`,{responseType: 'json'});
+  }
+  getApprenants(): Observable<any[]>{
+    return this.http.get<any[]>(`${apiURL}admin/users?archive=false&profil=63`,{responseType: 'json'});
+  }
 
   deleteUser(user: any):Observable<any>{
     return this.http.delete(`${apiURL}admin/users/${user.id}`);

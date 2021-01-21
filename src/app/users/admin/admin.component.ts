@@ -7,6 +7,20 @@ import { AdminService } from '../../service/user/admin.service';
 import { AuthServiceService } from '../../auth-service.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { SelectionModel } from '@angular/cdk/collections';
+import { element } from 'protractor';
+
+
+export interface PeriodicElement {
+  id:number;
+  photo:Blob;
+  prenom: string;
+  nom:string;
+  email:string;
+  profil:string;
+  archive:boolean;
+}
+
 
 @Component({
   selector: 'app-admin',
@@ -19,8 +33,10 @@ export class AdminComponent {
   @Input() edit:string='false';
   editButton:string | undefined ='Editer'; 
   datasource: any[]=[];
-  displayedColumns: string[] = ['id','photo' ,'prenom','nom','email','profil','archive','Edit','Delete'];
-
+  displayedColumns: string[] = ['select','id','photo' ,'prenom','nom','email','profil','archive','Details','Edit','Delete'];
+  selection = new SelectionModel<PeriodicElement>(true, []);
+  typeOfUsers: string[] = ['Utilisateurs', 'CM', 'Administrateurs', 'Apprenants', 'Formateurs'];
+  seletedElement:string="";
   constructor(
       private sanitizer:DomSanitizer,
       private authService:AuthServiceService,
@@ -46,9 +62,38 @@ export class AdminComponent {
            this.datasource = data;
     })
   }
+  getApprenants(){
+    this.adminService.getApprenants()
+    .subscribe(data=>{     
+      console.log(data);
+      this.datasource = data;
+      })
+  }
+  getAdministrateurs(){
+    this.adminService.getAdministrateurs()
+    .subscribe(data=>{     
+      console.log(data);
+      this.datasource = data;
+      })
+  }
+  getCM(){
+    this.adminService.getCM()
+    .subscribe(data=>{     
+      console.log(data);
+      this.datasource = data;
+      })
+  }
+  getFormateurs(){
+    this.adminService.getFormateurs()
+    .subscribe(data=>{     
+      console.log(data);
+      this.datasource = data;
+      })
+  }
+
   transform(photo:any){
     return this.sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,'+ photo);
-}
+  }
         
   ngOnInit(): void {
     this.getUsers();
@@ -166,5 +211,44 @@ onDeleteUser(row:any){
   loggout(){
     this.authService.deconnected();
   }
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.datasource.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.datasource.forEach(row => this.selection.select(row));
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: PeriodicElement): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+  }
+
+  selectElement(element:any){
+     console.log(element);
+    if (element==="Apprenants") {
+      this.getApprenants();
+    }else if (element==="Administrateurs") {
+      this.getAdministrateurs();
+    }else if (element==="Utilisateurs") {
+      this.getUsers();
+    }else if (element==="CM") {
+      this.getCM();
+    }else if (element==="Formateurs") {
+      this.getFormateurs();
+    }else{
+      console.log("NO");
+    }
+ }
 
 }

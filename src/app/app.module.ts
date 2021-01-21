@@ -60,7 +60,7 @@ import { AddReferentielComponent } from './promo/add-referentiel/add-referentiel
 import { ListReferentielsComponent } from './promo/list-referentiels/list-referentiels/list-referentiels.component';
 import { ListCompetencesComponent } from './competences/list-competences/list-competences/list-competences.component';
 import { ListGroupCompetencesComponent } from './competences/list-group-competences/list-group-competences/list-group-competences.component';
-
+import {MatCheckboxModule} from '@angular/material/checkbox'; 
 
 @NgModule({
   declarations: [
@@ -128,7 +128,8 @@ import { ListGroupCompetencesComponent } from './competences/list-group-competen
     NgxDropzoneModule,
     ReactiveFormsModule,
     MatRadioModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatCheckboxModule
 
   ],
   providers: [AuthServiceService,AuthGuard,EventsService,ProfilService,{

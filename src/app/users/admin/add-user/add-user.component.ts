@@ -22,7 +22,7 @@ interface Fabrique {
 export class AddUserComponent implements OnInit {
 
   profils:Profil[]=[];
-  email = new FormControl('', [Validators.required, Validators.email]);  
+  
   fileToUpload: any= true;
   formGroup:any = FormGroup;
   constructor(
@@ -42,7 +42,7 @@ export class AddUserComponent implements OnInit {
       this.initForm();
       this.getP();
     }
-    
+    email = new FormControl('', [Validators.required, Validators.email]);  
     initForm(){
       this.formGroup = new FormGroup({
         username: new FormControl('',[Validators.required]),
