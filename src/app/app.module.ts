@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import "pdfmake/build/pdfmake.js";
+import "pdfmake/build/vfs_fonts.js";
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -87,7 +89,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     AddReferentielComponent,
     ListReferentielsComponent,
     ListCompetencesComponent,
-    ListGroupCompetencesComponent
+    ListGroupCompetencesComponent,
   ],
   imports: [
     BrowserModule,
@@ -129,7 +131,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     ReactiveFormsModule,
     MatRadioModule,
     ToastrModule.forRoot(),
-    MatCheckboxModule
+    MatCheckboxModule,
+
 
   ],
   providers: [AuthServiceService,AuthGuard,EventsService,ProfilService,{

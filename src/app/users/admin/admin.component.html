@@ -55,10 +55,21 @@
     </mat-toolbar>
 
     <!-- Add Content Here -->
-  <div style="margin: 2vw auto;width: 90%;font-weight: bold;">
-      <button class="btn btn-success"  mat-raised-button (click)="onAddUser()">
+  <div style="margin: 1vw auto;width: 90%;font-weight: bold;">
+    <section style="padding:1vh; display: flex;align-items: center;">
+      <button class="btn btn-success" style="width: 30%;font-size: 1.2vw;"  mat-raised-button (click)="onAddUser()">
         <mat-icon>add</mat-icon> Ajouter un nouveau profil
       </button>
+      <!--Button pour generer un fichier pdf-->
+      <button (click)="generatePdf()">Open PDF</button>
+       <!--Een-->
+      <section fxFlex style="color: #ffffff;margin-left: 5vw;display: flex;align-items: center; float: right;background-color: #85929e;padding: 1vh;border-radius: 5px;font-size: 1.2vw;">
+       
+        <span>Recherches</span>
+        <mat-icon>search</mat-icon>
+      <input fxFlex placeholder="Search" style="border-radius: 50px;border-left: 1px solid #ffffff;" type="text"/>
+    </section>
+  </section>
       <hr>
       <mat-selection-list class="selection_list" #users [multiple]="false">
         <mat-list-option id="{{user}}" class="selection_element" (click)="selectElement(users.selectedOptions.selected[0]?.value)" fxFlex *ngFor="let user of typeOfUsers" [value]="user">

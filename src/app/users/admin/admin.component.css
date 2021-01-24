@@ -144,4 +144,7 @@ td {
   .close_menu{
     display: contents;
   }
+  .selection_element{
+    font-size: 1.2vw;
+  }
 }
