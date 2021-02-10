@@ -220,7 +220,6 @@ export class AddReferentielComponent implements OnInit {
     console.log('resultat');
     console.log(this.addRefForm.value, this.pdfFileToUpload);
     if(this.addRefForm?.valid){
-    
             this.promoService.postReferentiel(this.addRefForm.value,this.pdfFileToUpload)
                 .subscribe(
                     data=>{

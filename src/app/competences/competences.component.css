@@ -47,4 +47,10 @@ section {
   .example-chip-list {
     width: 100%;
   }
-  
+  .activate{
+      background-color: red;
+  }
+
+  .barre_button{
+    background-color:  #85929e;
+  }

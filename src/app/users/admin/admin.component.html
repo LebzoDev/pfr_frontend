@@ -7,28 +7,35 @@
       aria-label="Toggle sidenav"
       mat-icon-button
       (click)="drawer.toggle()"> <mat-icon> clear</mat-icon></button> </mat-toolbar>
+      <hr style="width: 100%;height: 2px; background-color: #ffffff;margin: 1vh auto;">
+      <section style="width: 100%;display: flex;justify-content: center;align-items: center;">
+        <img style="height:15vh;width:15vh; border-radius: 50%;" src="assets/image/undraw_Booking_re_gw4j(1).png">
+      </section>
+      <hr style="width: 15vh;height: 2px;margin: 1vh auto;background-color: #ffffff;">
+      <section style="color: #ffffff;display: flex;justify-content: center;align-items: center;">
+        Lebou Ndiaye Dieye
+      </section>
+      <section style="color: #ffffff;display: flex;justify-content: center;align-items: center;">
+        Administrateur
+      </section>
+      <hr style="width: 80%;height: 2px; background-color: #ffffff;margin: 1vh auto 0;">
+     
     <mat-nav-list>
       <section class="toolbar_user">
-          <a mat-list-item routerLinkActive="active" [routerLink]="['/','admin','profils']">PROFILS</a>
-          <mat-icon>how_to_reg</mat-icon> 
+          <a mat-list-item routerLinkActive="active" [routerLink]="['/','admin','profils']">  <mat-icon>how_to_reg</mat-icon> PROFILS</a>
       </section>
       <section class="toolbar_user">
-          <a mat-list-item routerLinkActive="active"> <span>UTILISATEURS</span></a>
-          <mat-icon>supervisor_account</mat-icon> 
+          <a mat-list-item routerLinkActive="active">  <mat-icon>supervisor_account</mat-icon>  <span>UTILISATEURS</span></a>
       </section>
       <section class="toolbar_user">
-          <a mat-list-item [routerLink]="['/','admin','profil_sorties']"><span>PROFILS SORTIE</span></a>
-          <mat-icon>school</mat-icon> 
+          <a mat-list-item [routerLink]="['/','admin','profil_sorties']"><mat-icon>school</mat-icon> <span>PROFILS SORTIE</span></a>
       </section>
       <section class="toolbar_user">
-          <a mat-list-item [routerLink]="['/','admin','competences']"><span>COMPETENCES</span></a>
-          <mat-icon>insights</mat-icon> 
+          <a mat-list-item [routerLink]="['/','admin','competences']"> <mat-icon>insights</mat-icon> <span>COMPETENCES</span></a>
       </section>
       <section class="toolbar_user">
-          <a mat-list-item routerLinkActive="active" [routerLink]="['/','admin','promos']"><span>PROMOS</span></a>
-          <mat-icon>reduce_capacity</mat-icon> 
+          <a mat-list-item routerLinkActive="active" [routerLink]="['/','admin','promos']"> <mat-icon>reduce_capacity</mat-icon> <span>PROMOS</span></a>
       </section>
-    <section  style="background-color: burlywood;margin-top: -1vh;">cbczz</section>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -72,7 +79,7 @@
   </section>
       <hr>
       <mat-selection-list class="selection_list" #users [multiple]="false">
-        <mat-list-option id="{{user}}" class="selection_element" (click)="selectElement(users.selectedOptions.selected[0]?.value)" fxFlex *ngFor="let user of typeOfUsers" [value]="user">
+        <mat-list-option id="{{user}}" class="selection_element" [ngClass]="{'activate':(profils_activate && user===user_active)}" (click)="profils_act(user)" (click)="selectElement(users.selectedOptions.selected[0]?.value)" fxFlex *ngFor="let user of typeOfUsers" [value]="user">
           {{user}}
         </mat-list-option>
       </mat-selection-list>
@@ -106,7 +113,7 @@
               <td mat-cell *matCellDef="let element"> {{element.id}} </td>
           </ng-container>
 
-      <!-- Position Column --> 
+      <!-- Photo Column --> 
           <ng-container matColumnDef="photo">
               <th mat-header-cell  *matHeaderCellDef class="th_class">Photo</th>
               <td mat-cell *matCellDef="let element" > <img style="width: 2vw;height: 2vw; border-radius: 50px;" [src]="(transform(element.photo))"> </td>

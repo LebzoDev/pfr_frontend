@@ -38,10 +38,10 @@
       <mat-card>
       <section class="container" style="border: 2px solid #85929e;width: 100%;justify-content: space-between;flex: 1 1 auto;align-items: center;">
         <div class="example-button-row">
-          <button mat-button style="background-color:  #85929e;">Liste Competences</button>
-          <button mat-button style="background-color:  #85929e;" >Liste Groupes de competences</button>
-          <button mat-button style="background-color:  #85929e;">Ajouter competences</button>
-          <button mat-button style="background-color:  #85929e;">Ajouter Groupe Competences</button>
+          <button mat-button [ngClass]="{activate: listCompetencesDisplay}" class="barre_button"  (click)="activate_listCompetences()">Liste Competences</button>
+          <button mat-button class="barre_button" [ngClass]="{activate: listGroupCompetencesDisplay}" (click)="activate_listGroupCompetences()">Liste Groupes de competences</button>
+          <button mat-button class="barre_button" [ngClass]="{activate: addCompetenceDisplay}" (click)="activate_addCompetences()">Ajouter competences</button>
+          <button mat-button class="barre_button"[ngClass]="{activate: addGroupCompetencesDisplay}" (click)="activate_addGroupCompetences()">Ajouter Groupe Competences</button>
         </div>
       </section>
     </mat-card>

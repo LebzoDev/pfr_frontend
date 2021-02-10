@@ -32,6 +32,8 @@ export interface PeriodicElement {
 export class AdminComponent {
 
 
+  profils_activate:boolean=false;
+  user_active:string="";
   @Input() edit:string='false';
   editButton:string | undefined ='Editer'; 
   datasource: any[]=[];
@@ -56,7 +58,10 @@ export class AdminComponent {
     formGroup:any = FormGroup;
 
    
-  
+  profils_act(user:any){
+      this.user_active=user;
+      this.profils_activate=true;
+  }
   getUsers(){
       this.adminService.getUsers()
          .subscribe(data=>{     

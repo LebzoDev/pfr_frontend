@@ -11,12 +11,13 @@
         <mat-toolbar>Authentification Form</mat-toolbar>
         <form fxLayout="stretch" fxLayout="column" class="login-form" [formGroup]="formGroup" (ngSubmit)='loginProcess()'>
           <hr>
-            <mat-divider></mat-divider>
+            <span id="username_"></span>
             <mat-form-field>
-                <input matInput placeholder="username" formControlName="username">
+                <input matInput id="login" (keyup)="initErrorFormulaire()" placeholder="username" formControlName="username">
             </mat-form-field>
+            <span id="password_"></span>
             <mat-form-field>
-                <input matInput type="password" placeholder="password" formControlName="password">
+                <input matInput id="pwd" (keyup)="initErrorFormulaire()" type="password" placeholder="password" formControlName="password">
             </mat-form-field>
             <button mat-raised-button class="btn connecter"   type="submit">Connecter</button>
           </form>      
