@@ -29,15 +29,16 @@
       <section>
        <div class="example-label" style="text-align: center;">Niveaux:</div>
        <div class="example-button-row">
-         <button mat-raised-button color="primary">Niveau 1</button>
-         <button mat-raised-button color="accent">Niveau 2</button>
-         <button mat-raised-button color="warn">Niveau 3</button>
+         <button mat-raised-button (click)="niveau1_Activate()" color="primary">Niveau 1</button>
+         <button mat-raised-button (click)="niveau2_Activate()" color="accent">Niveau 2</button>
+         <button mat-raised-button (click)="niveau3_Activate()" color="warn">Niveau 3</button>
        </div>
      </section>
-      <section style="width:100%">
+     <!--Niveau 1-->
+      <section *ngIf="niveau1" style="width:100%">
       <mat-card fxFlex="50">
         <mat-card style="background-color: #85929e;">
-          Criteres d'evaluation
+          Criteres d'evaluation (Niveau 1)
         </mat-card>
         <mat-card >
             <input style="height: 15vh;width: 100%;" type="text" >
@@ -45,7 +46,45 @@
       </mat-card>
       <mat-card fxFlex="50">
         <mat-card style="background-color: #85929e;">
-          Groupe d'actions
+          Groupe d'actions (Niveau 1)
+        </mat-card>
+        <mat-card >
+            <input style="height: 15vh;width: 100%;" type="text">
+        </mat-card>
+      </mat-card>
+    </section>
+    <!--Niveau 2-->
+    <section *ngIf="niveau2" style="width:100%">
+      <mat-card fxFlex="50">
+        <mat-card style="background-color: #85929e;">
+          Criteres d'evaluation (Niveau 2)
+        </mat-card>
+        <mat-card >
+            <input style="height: 15vh;width: 100%;" type="text" >
+        </mat-card>
+      </mat-card>
+      <mat-card fxFlex="50">
+        <mat-card style="background-color: #85929e;">
+          Groupe d'actions (Niveau 2)
+        </mat-card>
+        <mat-card >
+            <input style="height: 15vh;width: 100%;" type="text">
+        </mat-card>
+      </mat-card>
+    </section>
+    <!--Niveau 3-->
+    <section *ngIf="niveau3" style="width:100%">
+      <mat-card fxFlex="50">
+        <mat-card style="background-color: #85929e;">
+          Criteres d'evaluation (Niveau 3)
+        </mat-card>
+        <mat-card >
+            <input style="height: 15vh;width: 100%;" type="text" >
+        </mat-card>
+      </mat-card>
+      <mat-card fxFlex="50">
+        <mat-card style="background-color: #85929e;">
+          Groupe d'actions (Niveau 3)
         </mat-card>
         <mat-card >
             <input style="height: 15vh;width: 100%;" type="text">

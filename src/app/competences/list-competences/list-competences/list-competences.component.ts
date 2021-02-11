@@ -12,6 +12,18 @@ export class ListCompetencesComponent implements OnInit {
   competences:Competence[]=[];
   groupCompetences:GroupCompetence[]=[];
   value_grpcpm:Competence={};
+  niveau1:boolean=true;
+  niveau2:boolean=false;
+  niveau3:boolean=false;
+  libelle1:string="";
+  libelle2:string="";
+  libelle3:string="";
+  critereDev1:string="";
+  critereDev2:string="";
+  critereDev3:string="";
+  groupDac1:string="";
+  groupDac2:string="";
+  groupDac3:string="";
   constructor(private competenceService:CompetenceService) { }
 
   ngOnInit(): void {
@@ -25,6 +37,23 @@ export class ListCompetencesComponent implements OnInit {
       console.log(competences);
     }
   }
+
+  niveau1_Activate(){
+    this.niveau1=true;
+    this.niveau2 =false;
+    this.niveau3=false;
+  }
+  niveau2_Activate(){
+    this.niveau2=true;
+    this.niveau1 =false;
+    this.niveau3=false;
+  }
+  niveau3_Activate(){
+    this.niveau3=true;
+    this.niveau1 =false;
+    this.niveau2=false;
+  }
+
 
   getComp(){
     this.competenceService.getCompetences()
