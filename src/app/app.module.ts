@@ -63,7 +63,9 @@ import { ListReferentielsComponent } from './promo/list-referentiels/list-refere
 import { ListCompetencesComponent } from './competences/list-competences/list-competences/list-competences.component';
 import { ListGroupCompetencesComponent } from './competences/list-group-competences/list-group-competences/list-group-competences.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { MenuComponent } from './menu/menu.component'; 
+import { MenuComponent } from './menu/menu.component';
+import { AddPromoComponent } from './promo/add-promo/add-promo.component';
+import { ListPromosComponent } from './promo/list-promos/list-promos.component'; 
 
 @NgModule({
   declarations: [
@@ -92,6 +94,8 @@ import { MenuComponent } from './menu/menu.component';
     ListCompetencesComponent,
     ListGroupCompetencesComponent,
     MenuComponent,
+    AddPromoComponent,
+    ListPromosComponent,
   ],
   imports: [
     BrowserModule,

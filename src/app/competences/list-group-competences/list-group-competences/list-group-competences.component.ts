@@ -3,7 +3,8 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { CompetenceService } from 'src/app/service/competence/competence.service';
-import { Competence } from '../../../promo/promo.component';
+import { Competence } from '../../../promo/add-promo/add-promo.component';
+
 
 export interface GroupCompetence{
   id?: number,

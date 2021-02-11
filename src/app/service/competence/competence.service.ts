@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Competence } from '../../promo/promo.component';
 import { HttpClient } from '@angular/common/http';
 import { apiURL } from 'src/environments/environment';
+import { Competence } from '../../promo/add-promo/add-promo.component';
 
 export interface GroupCompetence{
   id?: number,
   libelle?:string,
   descriptif?: string,
   archive?:boolean,
+  competences?:Competence[]
 
 }
 @Injectable({

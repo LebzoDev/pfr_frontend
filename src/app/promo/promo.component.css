@@ -53,5 +53,13 @@
   input[type="file"] {
     display:none;
 }
+
+.activate{
+  background-color: #28a745;
+  color: #ffffff;
+}
+.barre_button{
+  background-color:  #85929e;
+}
   
   

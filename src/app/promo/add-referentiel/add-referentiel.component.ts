@@ -2,7 +2,6 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { CompetenceService, GroupCompetence } from 'src/app/service/competence/competence.service';
-import { Competence } from '../promo.component';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AddGroupCompetenceComponent } from '../../competences/addGroupCompetence/add-group-competence/add-group-competence.component';

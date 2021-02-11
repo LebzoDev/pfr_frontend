@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { FormGroup, FormBuilder, Form, Validators, FormArray } from '@angular/forms';
-import { Competence } from '../../../promo/promo.component';
 import { CompetenceService } from '../../../service/competence/competence.service';
 import { ToastrService } from 'ngx-toastr';
 import { element } from 'protractor';
 import { Observable } from 'rxjs';
+import { Competence } from '../../../promo/add-promo/add-promo.component';
 
 @Component({
   selector: 'app-add-group-competence',

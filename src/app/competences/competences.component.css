@@ -48,9 +48,9 @@ section {
     width: 100%;
   }
   .activate{
-      background-color: red;
+    background-color: #28a745;
+    color: #ffffff;
   }
-
   .barre_button{
     background-color:  #85929e;
   }
