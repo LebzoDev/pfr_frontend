@@ -3,13 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { apiURL } from 'src/environments/environment';
 import { element } from 'protractor';
+import { GroupCompetence } from '../competence/competence.service';
 export interface Referentiel{
   id?: number,
   libelle?: string,
   presentation?: string,
+  groupeCompetences:GroupCompetence[],
   programme?: string,
   criteres?: string,
   archive?: boolean,
+  admission?:string,
+  evaluation?:string
 }
 export interface GrpCompetence{
   id?: number,

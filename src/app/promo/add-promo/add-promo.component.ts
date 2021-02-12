@@ -13,11 +13,18 @@ interface Langues {
 interface Fabrique {
   libelle: string;
 }
+export interface Niveau{
+  id?: number,
+  libelle?: string,
+  critereDevaluation?:string,
+  groupDactions?:string
+}
 export interface Competence{
   id?: number,
   libelle?: string,
   descriptif?: string,
   archive?: boolean,
+  niveaux?:Niveau[]
 }
 
 

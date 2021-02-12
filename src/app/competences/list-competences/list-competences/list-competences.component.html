@@ -18,7 +18,7 @@
             <hr style="background-color: #2b2d42;height: 5px;color: red;width: 50%;margin:1vh auto">
             <mat-card style="padding: 1vh;background-color: #85929e;width: 100%;font-weight: bold;color: #ffffff;">Competences correspondantes</mat-card>
             <div style="width: 100%;height: 40vh;overflow: scroll;">
-              <mat-card style="background-color: #cacfd2;cursor: pointer;border-bottom: 1px solid #2b2b42;" *ngFor="let competence of competences">
+              <mat-card (click)="display_niveaux(competence)" id="{{competence.id}}" style="background-color: #cacfd2;cursor: pointer;border-bottom: 1px solid #2b2b42;" *ngFor="let competence of competences">
                   {{competence.libelle}}
               </mat-card>
               <mat-divider></mat-divider>
@@ -27,40 +27,58 @@
     <mat-card style="width: 60%;float: right;">
       <hr>
       <section>
-       <div class="example-label" style="text-align: center;">Niveaux:</div>
        <div class="example-button-row">
          <button mat-raised-button (click)="niveau1_Activate()" color="primary">Niveau 1</button>
          <button mat-raised-button (click)="niveau2_Activate()" color="accent">Niveau 2</button>
          <button mat-raised-button (click)="niveau3_Activate()" color="warn">Niveau 3</button>
        </div>
      </section>
+     <hr>
      <!--Niveau 1-->
+     <section *ngIf="niveau1" style="width: 100%;">
+      <mat-card fxFlex="100" style="background-color: #cacfd2;font-weight: bold; padding:0 auto">
+          LIBELLE NIVEAU 1:{{libelle1}}
+      </mat-card>
+    </section>
+    <hr *ngIf="niveau1">
       <section *ngIf="niveau1" style="width:100%">
       <mat-card fxFlex="50">
         <mat-card style="background-color: #85929e;">
           Criteres d'evaluation (Niveau 1)
         </mat-card>
         <mat-card >
-            <input style="height: 15vh;width: 100%;" type="text" >
-        </mat-card>
+            <textarea style="height: 15vh;width: 100%;"  [(ngModel)]="critereDev1" >
+              {{critereDev1}}
+            </textarea>
+          </mat-card>
       </mat-card>
       <mat-card fxFlex="50">
         <mat-card style="background-color: #85929e;">
           Groupe d'actions (Niveau 1)
         </mat-card>
-        <mat-card >
-            <input style="height: 15vh;width: 100%;" type="text">
+        <mat-card>
+            <textarea style="height: 15vh;width: 100%;"  [(ngModel)]="groupDac1" >
+              {{groupDac1}}
+            </textarea>
         </mat-card>
       </mat-card>
     </section>
     <!--Niveau 2-->
+    <section *ngIf="niveau2" style="width: 100%;">
+      <mat-card fxFlex="100" style="background-color: #cacfd2;font-weight: bold;">
+          LIBELLE NIVEAU 2: {{libelle2}}
+      </mat-card>
+    </section>
+    <hr *ngIf="niveau2">
     <section *ngIf="niveau2" style="width:100%">
       <mat-card fxFlex="50">
         <mat-card style="background-color: #85929e;">
           Criteres d'evaluation (Niveau 2)
         </mat-card>
         <mat-card >
-            <input style="height: 15vh;width: 100%;" type="text" >
+          <textarea style="height: 15vh;width: 100%;"  [(ngModel)]="critereDev2" >
+            {{critereDev2}}
+          </textarea>
         </mat-card>
       </mat-card>
       <mat-card fxFlex="50">
@@ -68,18 +86,28 @@
           Groupe d'actions (Niveau 2)
         </mat-card>
         <mat-card >
-            <input style="height: 15vh;width: 100%;" type="text">
+          <textarea style="height: 15vh;width: 100%;"  [(ngModel)]="groupDac2" >
+            {{groupDac2}}
+          </textarea>
         </mat-card>
       </mat-card>
     </section>
     <!--Niveau 3-->
+    <section *ngIf="niveau3" style="width: 100%;">
+      <mat-card fxFlex="100" style="background-color: #cacfd2;font-weight: bold;">
+          LIBELLE NIVEAU 3:{{libelle3}}
+      </mat-card>
+    </section>
+    <hr *ngIf="niveau3">
     <section *ngIf="niveau3" style="width:100%">
       <mat-card fxFlex="50">
         <mat-card style="background-color: #85929e;">
           Criteres d'evaluation (Niveau 3)
         </mat-card>
         <mat-card >
-            <input style="height: 15vh;width: 100%;" type="text" >
+          <textarea style="height: 15vh;width: 100%;"  [(ngModel)]="critereDev3" >
+            {{critereDev3}}
+          </textarea>
         </mat-card>
       </mat-card>
       <mat-card fxFlex="50">
@@ -87,7 +115,9 @@
           Groupe d'actions (Niveau 3)
         </mat-card>
         <mat-card >
-            <input style="height: 15vh;width: 100%;" type="text">
+          <textarea style="height: 15vh;width: 100%;"  [(ngModel)]="groupDac3" >
+            {{groupDac3}}
+          </textarea>
         </mat-card>
       </mat-card>
     </section>

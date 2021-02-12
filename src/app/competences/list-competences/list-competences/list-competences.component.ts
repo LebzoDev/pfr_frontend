@@ -37,7 +37,19 @@ export class ListCompetencesComponent implements OnInit {
       console.log(competences);
     }
   }
-
+  display_niveaux(competence:Competence){
+    if (competence.niveaux?.length==3) {
+      this.libelle1=<string>competence.niveaux?.[0].libelle;
+      this.libelle2=<string>competence.niveaux?.[1].libelle;
+      this.libelle3=<string>competence.niveaux?.[2].libelle;
+      this.critereDev1=<string>competence.niveaux?.[0].critereDevaluation;
+      this.critereDev2=<string>competence.niveaux?.[1].critereDevaluation;
+      this.critereDev3=<string>competence.niveaux?.[2].critereDevaluation;
+      this.groupDac1=<string>competence.niveaux?.[0].groupDactions;
+      this.groupDac2=<string>competence.niveaux?.[1].groupDactions;
+      this.groupDac3=<string>competence.niveaux?.[2].groupDactions;
+    }
+  }
   niveau1_Activate(){
     this.niveau1=true;
     this.niveau2 =false;

@@ -1,1 +1,45 @@
-<p>list-referentiels works!</p>
+<mat-card class="example-card">
+        
+    <section style="width:100%;overflow:auto;margin: 0 auto;"  >
+
+      <!-- <section style="width: 33%;float: left;" *ngFor="let grpComp of groupCompetences; let i=index"> -->
+     <section style="width: 33%;float: left;" *ngFor="let ref of referentiels; let i=index">
+      <mat-card fxFlex="100" >
+        <mat-card style="background-color: #85929e;">
+           {{ref.libelle}} {{i}}
+          <mat-icon  style="float: right;cursor: pointer;">clear</mat-icon>
+          <mat-icon  style="float: right;cursor: pointer;">create</mat-icon> 
+        </mat-card>
+        <mat-card >
+            <textarea style="height: 15vh;width: 100%;" type="text"> {{ref.presentation}} </textarea>
+        </mat-card>
+        <mat-accordion>
+          <mat-expansion-panel style="background-color: #cacfd2;padding: 0;"  hideToggle >
+            <mat-expansion-panel-header >
+              <mat-panel-title>
+                Groupe de competences
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <!-- <mat-list *ngFor="let element of  grpComp.competences; let last=last"> -->
+            <mat-list *ngFor="let element of  referentiels[i].groupeCompetences; let last=last">
+                <mat-divider></mat-divider>
+                <mat-list-item style="background-color: red;display: flex;align-items: center;justify-content: center;cursor: pointer;">libelle:{{element.libelle}}</mat-list-item>
+                <mat-divider *ngIf="last"></mat-divider>
+                <mat-divider></mat-divider>
+            </mat-list>
+          </mat-expansion-panel>
+          </mat-accordion>
+          <mat-accordion>
+            <mat-expansion-panel style="background-color: #2b2d42;" hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title style="color: #ffffff;">
+                  Tags
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p> This is the primary content of the panel.</p>
+            </mat-expansion-panel>
+            </mat-accordion>
+      </mat-card>
+    </section>
+    </section>
+  </mat-card>
