@@ -196,6 +196,7 @@ export class AddReferentielComponent implements OnInit {
       });
     }
   }
+
   removeAdmissionCriteriaEvent(critere: string): void {
     const index = this.admission.indexOf(critere);
     if (index >= 0) {
@@ -205,6 +206,7 @@ export class AddReferentielComponent implements OnInit {
       });
     }
   }
+  
   removeEvaluationCriteriaEvent(critere: string): void {
     const index = this.evaluation.indexOf(critere);
     if (index >= 0) {

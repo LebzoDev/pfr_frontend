@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import "pdfmake/build/pdfmake.js";
 import "pdfmake/build/vfs_fonts.js";
 
+
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {MatGridListModule} from '@angular/material/grid-list'; 
@@ -137,7 +138,7 @@ import { ListPromosComponent } from './promo/list-promos/list-promos.component';
     ReactiveFormsModule,
     MatRadioModule,
     ToastrModule.forRoot(),
-    MatCheckboxModule,
+    MatCheckboxModule
 
 
   ],

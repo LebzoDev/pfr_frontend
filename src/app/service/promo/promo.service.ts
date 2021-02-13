@@ -4,6 +4,13 @@ import { Observable } from 'rxjs';
 import { apiURL } from 'src/environments/environment';
 import { element } from 'protractor';
 import { GroupCompetence } from '../competence/competence.service';
+
+export interface criteresReferentiel{
+  id?:number,
+  type?:string,
+  libelle?:string,
+  archive?:boolean
+}
 export interface Referentiel{
   id?: number,
   libelle?: string,
@@ -12,8 +19,7 @@ export interface Referentiel{
   programme?: string,
   criteres?: string,
   archive?: boolean,
-  admission?:string,
-  evaluation?:string
+  criteresReferentiels?:criteresReferentiel[]
 }
 export interface GrpCompetence{
   id?: number,

@@ -23,7 +23,7 @@
             <!-- <mat-list *ngFor="let element of  grpComp.competences; let last=last"> -->
             <mat-list *ngFor="let element of  referentiels[i].groupeCompetences; let last=last">
                 <mat-divider></mat-divider>
-                <mat-list-item style="background-color: red;display: flex;align-items: center;justify-content: center;cursor: pointer;">libelle:{{element.libelle}}</mat-list-item>
+                <mat-list-item style="background-color: #85929e;display: flex;align-items: center;justify-content: center;cursor: pointer;">{{element.libelle}}</mat-list-item>
                 <mat-divider *ngIf="last"></mat-divider>
                 <mat-divider></mat-divider>
             </mat-list>
@@ -33,12 +33,51 @@
             <mat-expansion-panel style="background-color: #2b2d42;" hideToggle>
               <mat-expansion-panel-header>
                 <mat-panel-title style="color: #ffffff;">
-                  Tags
+                  Programme
                 </mat-panel-title>
               </mat-expansion-panel-header>
-              <p> This is the primary content of the panel.</p>
+              <p>
+                <mat-chip-list aria-label="Fish selection">
+                  <mat-chip color="accent" (clik)="open_programme(ref.programme)" selected>Ouvrir programme</mat-chip>
+                </mat-chip-list>
+                 <button (click)="transform(ref.programme)" target="_blank">gcjcgc</button>
+                 <iframe [src]="selectedFileBLOB"></iframe>
+                <!--iframe  width="100" height="600" type='application/pdf'></iframe-->   
+              </p>
             </mat-expansion-panel>
             </mat-accordion>
+            <mat-accordion>
+              <mat-expansion-panel style="background-color: #cacfd2;" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Critère d'évaluation
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p> 
+                  <mat-chip-list aria-label="Fish selection">
+                    <mat-chip  *ngFor="let evaluation of referentiels[i].criteresReferentiels"  color="accent" selected>
+                      <span *ngIf="evaluation.type==='evaluation'">{{evaluation.libelle}}</span> 
+                    </mat-chip>
+                  </mat-chip-list>
+                </p>
+              </mat-expansion-panel>
+              </mat-accordion>
+              <mat-accordion>
+                <mat-expansion-panel style="background-color: #2b2d42;" hideToggle>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title style="color: #ffffff;">
+                      Critère d'admission
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <p> 
+                    <mat-chip-list  aria-label="Fish selection">
+                      <mat-chip *ngFor="let admission of referentiels[i].criteresReferentiels" color="accent" selected>
+                        <span *ngIf="admission.type==='admission'">{{admission.libelle}}</span>
+                      </mat-chip>
+                    </mat-chip-list>
+                  </p>
+                </mat-expansion-panel>
+                </mat-accordion>
       </mat-card>
     </section>
     </section>
