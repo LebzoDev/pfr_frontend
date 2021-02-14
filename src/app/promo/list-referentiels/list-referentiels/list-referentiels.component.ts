@@ -12,12 +12,28 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts.js';
 export class ListReferentielsComponent implements OnInit {
 
   selectedFileBLOB:any;
+  pdfSrc:any;
   referentiels:Referentiel[]=[];
   constructor(private promoservice:PromoService,
     private sanitizer:DomSanitizer) { }
 
   ngOnInit(): void {
     this.getReferentiels();
+  }
+
+  display_programme(programme:any){
+    this.pdfSrc=this._base64ToArrayBuffer(programme);
+    this.selectedFileBLOB = this._base64ToArrayBuffer(programme);
+  }
+
+  _base64ToArrayBuffer(base64:any) {
+    const binary_string = window.atob(base64);
+    const len = binary_string.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+      bytes[i] = binary_string.charCodeAt(i);
+    }
+    return bytes.buffer;
   }
 
   transform(programme:any){
@@ -54,7 +70,7 @@ win?.document.write('</body></html>');
         .subscribe(data=>
           {
             this.referentiels=data;
-            console.log(this.referentiels[0].criteresReferentiels)
+            console.log(this.referentiels[1].programme)
           },
           error=>{
             console.log(error);

@@ -38,11 +38,10 @@
               </mat-expansion-panel-header>
               <p>
                 <mat-chip-list aria-label="Fish selection">
-                  <mat-chip color="accent" (clik)="open_programme(ref.programme)" selected>Ouvrir programme</mat-chip>
+                  <mat-chip color="accent" style="cursor: pointer;" (click)="transform(ref.programme)" selected>Ouvrir programme</mat-chip>
                 </mat-chip-list>
-                 <button (click)="transform(ref.programme)" target="_blank">gcjcgc</button>
-                 <iframe [src]="selectedFileBLOB"></iframe>
-                <!--iframe  width="100" height="600" type='application/pdf'></iframe-->   
+                 <!-- <button (click)="transform(ref.programme)" target="_blank">gcjcgc</button> -->
+                 <!-- <iframe [src]="selectedFileBLOB"></iframe> -->
               </p>
             </mat-expansion-panel>
             </mat-accordion>

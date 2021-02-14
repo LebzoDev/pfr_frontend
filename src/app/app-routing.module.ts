@@ -14,6 +14,8 @@ import { EditUserComponent } from './users/admin/edit-user/edit-user.component';
 import { ProfilSortieComponent } from './profil-sortie/profil-sortie.component';
 import { CompetencesComponent } from './competences/competences.component';
 import { PromoComponent } from './promo/promo.component';
+import { DetailsApprenantComponent } from './users/admin/details-apprenant/details-apprenant.component';
+
 
 
 
@@ -31,6 +33,10 @@ const routes: Routes = [
     component:EditUserComponent
    },
    {
+    path:'admin/users/details',
+    component:DetailsApprenantComponent
+    },
+   {
     path:'admin/users',
     component: AdminComponent,
     children:[
@@ -41,6 +47,10 @@ const routes: Routes = [
       {
         path: 'edit',
         component:EditUserComponent
+      },
+      {
+        path:'details',
+        component:DetailsApprenantComponent
       }
     ]
    },

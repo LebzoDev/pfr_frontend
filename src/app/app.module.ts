@@ -66,7 +66,9 @@ import { ListGroupCompetencesComponent } from './competences/list-group-competen
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MenuComponent } from './menu/menu.component';
 import { AddPromoComponent } from './promo/add-promo/add-promo.component';
-import { ListPromosComponent } from './promo/list-promos/list-promos.component'; 
+import { ListPromosComponent } from './promo/list-promos/list-promos.component';
+import { DetailsApprenantComponent } from './users/admin/details-apprenant/details-apprenant.component';
+import { MenuHeaderComponent } from './menu/menu-header/menu-header.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +99,8 @@ import { ListPromosComponent } from './promo/list-promos/list-promos.component';
     MenuComponent,
     AddPromoComponent,
     ListPromosComponent,
+    DetailsApprenantComponent,
+    MenuHeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -138,8 +142,7 @@ import { ListPromosComponent } from './promo/list-promos/list-promos.component';
     ReactiveFormsModule,
     MatRadioModule,
     ToastrModule.forRoot(),
-    MatCheckboxModule
-
+    MatCheckboxModule,
 
   ],
   providers: [AuthServiceService,AuthGuard,EventsService,ProfilService,{

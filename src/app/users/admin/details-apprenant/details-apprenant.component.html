@@ -1,4 +1,5 @@
-    <mat-sidenav #drawer  class="sidenav" fixedInViewport
+<mat-sidenav-container class="sidenav-container" >
+    <mat-sidenav #drawer class="sidenav" fixedInViewport
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="(isHandset$ | async) === false">
@@ -37,3 +38,29 @@
         </section>
       </mat-nav-list>
     </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar class="header_bar">
+        <!-- <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button> -->
+        <span> <button  type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+         >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button></span>
+      <span> GESTION DES UTILISATEURS</span>
+      <mat-card-actions >
+        <button mat-flat-button mat-button style="background-color: #2b2d42;color: #ffffff;" (click)="loggout()"> Deconnecter </button>
+      </mat-card-actions>
+      </mat-toolbar>
+  
+ <!--Button pour generer un fichier pdf-->
+ <button (click)="generatePdf()">Open PDF</button>
+ <!--Een-->

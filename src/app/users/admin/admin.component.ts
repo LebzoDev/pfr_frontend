@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { FormGroup, FormControl,Validators } from '@angular/forms';
 import { AdminService } from '../../service/user/admin.service';
@@ -11,6 +11,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 
 import * as pdfMake from 'pdfmake/build/pdfmake.js';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts.js';
+import { User } from '../../modele/user';
+import { DataServiceService } from '../../service/data-service.service';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export interface PeriodicElement {
@@ -29,9 +31,10 @@ export interface PeriodicElement {
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit,OnDestroy {
 
 
+  apprenant_active:boolean=false;
   profils_activate:boolean=false;
   user_active:string="";
   @Input() edit:string='false';
@@ -41,17 +44,39 @@ export class AdminComponent {
   selection = new SelectionModel<PeriodicElement>(true, []);
   typeOfUsers: string[] = ['Utilisateurs', 'CM', 'Administrateurs', 'Apprenants', 'Formateurs'];
   seletedElement:string="";
+
+  apprenant:User={};
+  subscription:any;
+
   constructor(
       private sanitizer:DomSanitizer,
       private authService:AuthServiceService,
       private adminService:AdminService,
       private breakpointObserver: BreakpointObserver,
-      private router:Router) {}
+      private router:Router,
+      private data: DataServiceService) {}
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
       shareReplay()
     );
+
+    ngOnInit(): void {
+      this.getUsers();
+      this.subscription = this.data.currentMessage.subscribe((apprenant:any) => this.apprenant = apprenant);
+    }
+
+    ngOnDestroy() {
+      this.subscription.unsubscribe();
+    }
+  
+    display_details_apprenants(apprenant:any){
+      if (this.apprenant_active) {
+        this.data.changeApprenantDetails(apprenant)
+        this.router.navigate(['admin/users/details']);
+        console.log(this.apprenant_active)
+      }
+    }
 
     email = new FormControl('', [Validators.required, Validators.email]);  
     fileToUpload: any= true;
@@ -70,6 +95,7 @@ export class AdminComponent {
     })
   }
   getApprenants(){
+    this.apprenant_active=true;
     this.adminService.getApprenants()
     .subscribe(data=>{     
       console.log(data);
@@ -77,6 +103,7 @@ export class AdminComponent {
       })
   }
   getAdministrateurs(){
+    this.apprenant_active=false;
     this.adminService.getAdministrateurs()
     .subscribe(data=>{     
       console.log(data);
@@ -84,13 +111,16 @@ export class AdminComponent {
       })
   }
   getCM(){
+    this.apprenant_active=false;
     this.adminService.getCM()
     .subscribe(data=>{     
       console.log(data);
       this.datasource = data;
       })
   }
+  
   getFormateurs(){
+    this.apprenant_active=false;
     this.adminService.getFormateurs()
     .subscribe(data=>{     
       console.log(data);
@@ -100,10 +130,6 @@ export class AdminComponent {
 
   transform(photo:any){
     return this.sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,'+ photo);
-  }
-        
-  ngOnInit(): void {
-    this.getUsers();
   }
 
   initForm(){
@@ -257,141 +283,4 @@ onDeleteUser(row:any){
       console.log("NO");
     }
  }
-
- generatePdf(){
-  const documentDefinition = { content: 'This is an sample PDF printed with pdfMake'};
-  //const docDef = this.getDocumentDefinition();
-  pdfMake.createPdf(documentDefinition).open();
- }
-
- getDocumentDefinition() {
-  //sessionStorage.setItem('resume', JSON.stringify(this.resume));
-  return {
-    content: [
-      {
-        text: 'RESUME',
-        bold: true,
-        fontSize: 20,
-        alignment: 'center',
-        margin: [0, 0, 0, 20]
-      },
-      {
-        columns: [
-          [{
-            text: "this.resume.name",
-            style: 'name'
-          },
-          {
-            text: "this.resume.address"
-          },
-          {
-            text: 'Email : ' + "this.resume.email",
-          },
-          {
-            text: 'Contant No : ' + "this.resume.contactNo",
-          },
-          {
-            text: 'GitHub: ' + "this.resume.socialProfile",
-            link: "this.resume.socialProfile",
-            color: 'blue',
-          }
-          ],
-          [
-            "this.getProfilePicObject()"
-          ]
-        ]
-      },
-      {
-        text: 'Skills',
-        style: 'header'
-      },
-      {
-        columns : [
-          {
-            ul : [
-             " ...this.resume.skills.filter((value, index) => index % 3 === 0).map(s => s.value)"
-            ]
-          },
-          {
-            ul : [
-            "  ...this.resume.skills.filter((value, index) => index % 3 === 1).map(s => s.value)"
-            ]
-          },
-          {
-            ul : [
-             " ...this.resume.skills.filter((value, index) => index % 3 === 2).map(s => s.value)"
-            ]
-          }
-        ]
-      },
-      {
-        text: 'Experience',
-        style: 'header'
-      },
-      {
-        education:'Education object 1'
-      },
-
-      {
-        text: 'Education',
-        style: 'header'
-      },
-      {
-        education:'Education object 2'
-      },
-      {
-        text: 'Other Details',
-        style: 'header'
-      },
-      {
-        text: "this.resume.otherDetails"
-      },
-      {
-        text: 'Signature',
-        style: 'sign'
-      },
-      {
-        columns : [
-            { qr: "this.resume.name" + ', Contact No : ' + "this.resume.contactNo", fit : 100 },
-            {
-            text: `(${"this.resume.name"})`,
-            alignment: 'right',
-            }
-        ]
-      }
-    ],
-    info: {
-      title: "this.resume.name" + '_RESUME',
-      author: "this.resume.name",
-      subject: 'RESUME',
-      keywords: 'RESUME, ONLINE RESUME',
-    },
-      styles: {
-        header: {
-          fontSize: 18,
-          bold: true,
-          margin: [0, 20, 0, 10],
-          decoration: 'underline'
-        },
-        name: {
-          fontSize: 16,
-          bold: true
-        },
-        jobTitle: {
-          fontSize: 14,
-          bold: true,
-          italics: true
-        },
-        sign: {
-          margin: [0, 50, 0, 10],
-          alignment: 'right',
-          italics: true
-        },
-        tableHeader: {
-          bold: true,
-        }
-      }
-  };
-}
-
 }
