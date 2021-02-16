@@ -36,7 +36,7 @@ export class ListReferentielsComponent implements OnInit {
     return bytes.buffer;
   }
 
-  transform(programme:any){
+transform(programme:any){
     console.log(programme);
 
     let pro=  this.sanitizer.bypassSecurityTrustResourceUrl('data:application/pdf;base64,'+programme);

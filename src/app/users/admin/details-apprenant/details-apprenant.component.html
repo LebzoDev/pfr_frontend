@@ -60,7 +60,79 @@
         <button mat-flat-button mat-button style="background-color: #2b2d42;color: #ffffff;" (click)="loggout()"> Deconnecter </button>
       </mat-card-actions>
       </mat-toolbar>
-  
- <!--Button pour generer un fichier pdf-->
- <button (click)="generatePdf()">Open PDF</button>
- <!--Een-->
+ <hr>
+ <div  fxFlexFill class="main-div">
+   
+     <mat-card fxFlex="80" style="margin: 0 auto;height:max-content;background-color: #cacfd2;height: 80vh;">
+         <mat-toolbar style="background-color: #85929e;color: #ffffff;text-align: center;">
+               <span style="margin: 0 auto;font-weight: bold;">DETAILS</span>
+         </mat-toolbar>
+         <p>
+             <mat-toolbar style="background-color: #2b2d42;color: #ffffff;">
+                 <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                     <mat-icon>menu</mat-icon>
+                 </button>
+             <span>Les informations de l'apprenant </span>
+             <span class="example-spacer"></span>
+         
+          <button class="btn-dialog-close" style="background-color: #f44336;color:#ffffff" mat-stroked-button (click)='onClose()' tabIndex='-1'>
+            <span>Retour</span>
+            <mat-icon>clear</mat-icon></button>
+         </mat-toolbar>
+         </p>
+         <mat-card>
+           <section style="width: 100%;">
+          <mat-card fxFlex=70>
+            <table class="example-full-width">
+              <tr>
+                <td>
+            <mat-card style="border-bottom: 2px solid #cacfd2;">
+              <strong> Username:</strong> *******************
+            </mat-card>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-card style="border-bottom: 2px solid #cacfd2;">
+              <strong>Password: </strong>**********************
+            </mat-card>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-card style="border-bottom: 2px solid #cacfd2;">
+              Prenom(s): {{apprenant.prenom}}
+            </mat-card>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-card style="border-bottom: 2px solid #cacfd2;">
+              Nom: {{apprenant.nom}}
+            </mat-card>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-card style="border-bottom: 2px solid #cacfd2;">
+              email: {{apprenant.email}}
+            </mat-card>
+          </td>
+        </tr>
+      </table>
+    </mat-card>
+ 
+        <mat-card fxFlex=30 style="display: flex; justify-content: center;align-items: center;">
+          <img style="width: 100%;height: 10vw; border-radius: 50px;" [src]="(transform(this.apprenant.photo))">
+        </mat-card>
+      </section>
+           <!-- <div class="form-group" style="background-color: red;">
+             <label for="file">Choose File</label>
+             <input type="file" name="photo" id="file" #event (change)='handleFileInput($event.target)'>
+           </div> -->
+           <hr>
+           <button mat-raised-button class="btn btn-success" (click)="generatePdf()" style="color: #ffffff;"  type="submit">Générer la carte</button>
+       
+     </mat-card>     
+   </mat-card>
+ </div>

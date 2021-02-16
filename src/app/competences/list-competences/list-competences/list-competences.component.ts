@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Competence } from '../../../promo/add-promo/add-promo.component';
 import { CompetenceService, GroupCompetence } from 'src/app/service/competence/competence.service';
 
+
 @Component({
   selector: 'app-list-competences',
   templateUrl: './list-competences.component.html',
