@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { AuthServiceService } from '../auth-service.service';
 import jwt_decode from "jwt-decode";
 import { ToastrService } from 'ngx-toastr';
+import { decode } from 'punycode';
+import { AdminService } from 'src/app/service/user/admin.service';
+import { Apprenant } from '../service/promo/promo.service';
 
 
 
@@ -17,8 +20,10 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent implements OnInit {
 
   formGroup:any = FormGroup;
+  apprenant:Apprenant={};
   
   constructor(
+      private adminService:AdminService,
       private authService:AuthServiceService,
       private router: Router,
       private toastr:ToastrService) { }
@@ -40,6 +45,9 @@ export class LoginComponent implements OnInit {
               if(result.token){
               localStorage.setItem('token',result.token);  
               let decoded : any = jwt_decode(result.token);
+              if(decoded.roles[0]=='ROLE_APPRENANT' && !decoded.archive && (decoded.status=='attente')){
+                    this.activate_apprenant(decoded.id);
+              }else{
               if(!decoded.archive)
               {
                   this.router.navigate(['/admin/profils']);
@@ -48,6 +56,7 @@ export class LoginComponent implements OnInit {
                 this.toastr.error("Login ou Mot de passe Incorrect","Veuillez reverifier !!!!");
                 this.authService.deconnected();
               }
+            }
            }
          },
          error=>{
@@ -69,6 +78,22 @@ export class LoginComponent implements OnInit {
           password_?.setAttribute("style","color:red;font-weight:lighter;font-size:1vw;");
         }
        }
+  }
+
+  activate_apprenant(id:number){
+      this.adminService.getApprenant(id)
+          .subscribe(data=>{
+              this.apprenant=data;
+              this.apprenant.status='active';
+              //console.log(this.apprenant);
+              this.adminService.putActivateApprenant(this.apprenant)
+                  .subscribe(data_update=>
+                        {
+                          console.log(data_update);
+                          //console.log(data_update);
+                         
+                        })
+          })
   }
 
   initErrorFormulaire(){

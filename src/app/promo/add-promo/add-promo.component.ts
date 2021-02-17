@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PromoService,Referentiel } from '../../service/promo/promo.service';
+import { Apprenant, PromoService,Referentiel } from '../../service/promo/promo.service';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { element } from 'protractor';
 import { deserialize } from 'v8';
@@ -35,6 +35,7 @@ export interface Competence{
 })
 export class AddPromoComponent implements OnInit {
 
+  apprenants_attente:Apprenant[]=[];
   promoForm: any = FormGroup ;
   fileToUpload:any= File;
   panelOpenState:boolean=true;
@@ -60,6 +61,7 @@ export class AddPromoComponent implements OnInit {
     this.initForm();
     this.getRef();
     this.getComp();
+    this.getApprenantAttente();
   }
 
   initForm(){
@@ -100,6 +102,13 @@ export class AddPromoComponent implements OnInit {
            this.referentiels=data;
          //this.datasource = data;
         })
+  }
+
+  getApprenantAttente(){
+      this.promoservice.getApprenantAttente()
+          .subscribe(data=>{
+              this.apprenants_attente=data;
+          })
   }
 
   getComp(){

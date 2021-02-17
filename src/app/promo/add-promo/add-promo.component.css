@@ -1,0 +1,8 @@
+tr{
+    border-bottom: 1px solid #000;
+    padding-bottom: 1vh;
+}
+
+table tr{
+    text-align: center;
+}

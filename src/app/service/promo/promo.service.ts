@@ -5,6 +5,19 @@ import { apiURL } from 'src/environments/environment';
 import { element } from 'protractor';
 import { GroupCompetence } from '../competence/competence.service';
 
+export interface Apprenant {
+  id?: number,
+  prenom?: string,
+  nom?: string,
+  username?: string,
+  password?: string,
+  email?: string,
+  photo?: Blob,
+  profil?: any,
+  archive?: boolean,
+  status?:string
+}
+
 export interface criteresReferentiel{
   id?:number,
   type?:string,
@@ -42,6 +55,10 @@ export class PromoService {
   }
   getGrpCompetences(): Observable<GrpCompetence[]>{
     return this.http.get<GrpCompetence[]>(`${apiURL}admin/groupe_competences?archive=false`,{responseType: 'json'});
+  }
+
+  getApprenantAttente(): Observable<Apprenant[]>{
+    return this.http.get<Apprenant[]>(`${apiURL}admin/promo/apprenants/attente`,{responseType:'json'});
   }
 
 

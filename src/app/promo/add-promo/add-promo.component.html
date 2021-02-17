@@ -209,18 +209,19 @@
             <mat-card fxFlex="50">
               <section>Liste des apprenants</section>
               <table style="width: 100%;border: 1px solid #000000;">
-                <tr style="text-align: center;">
+                <tr>
                 <th>Apprenants en attentes</th>
                 <th>Relancer toutes les invitations</th>
               </tr>
-              <tr>
-                <td>lebou@gmail.com</td>
-                <td>Relancer l'invitation</td>
+              <tr *ngFor="let app_attente of apprenants_attente">
+                <td>{{app_attente.email}}</td>
+                <td>
+                  <mat-chip-list aria-label="Fish selection">
+                    <mat-chip style="cursor: pointer;margin: 0 auto;font-size: 0.8vw;margin: 2vh auto;" color="primary" selected> Relancer l'invitation</mat-chip>
+                  </mat-chip-list>
+                </td>
               </tr>
-              <tr>
-                <td>omzo@gmail.com</td>
-                <td>Relancer l'invitation</td>
-              </tr>
+             
 
               </table>
 

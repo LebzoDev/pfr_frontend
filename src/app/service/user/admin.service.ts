@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { apiURL } from 'src/environments/environment';
+import { Apprenant } from '../promo/promo.service';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,16 @@ export class AdminService {
 
   deleteUser(user: any):Observable<any>{
     return this.http.delete(`${apiURL}admin/users/${user.id}`);
+  }
+
+  getApprenant(id:number):Observable<any>{
+      return this.http.get<any>(`${apiURL}apprenants/${id}`);
+  }
+
+  putActivateApprenant(apprenant_Update:Apprenant):Observable<void>{
+    const endpoint = `${apiURL}apprenants_active/${apprenant_Update.id}`;
+    apprenant_Update.status='active';
+    return this.http.put<void>(endpoint,apprenant_Update);
   }
 
 
@@ -61,8 +72,6 @@ export class AdminService {
     formData.append('nom', form.nom);
     formData.append('email', form.email);
     formData.append('id', '21');
-    console.log(formData);
-  
     return this.http.put(endpoint, formData);
 
   }
