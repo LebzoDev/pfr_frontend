@@ -5,6 +5,7 @@ import { element } from 'protractor';
 import { deserialize } from 'v8';
 import { formatDate } from '@angular/common';
 import { DatePipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 
 interface Langues {
@@ -53,6 +54,7 @@ export class AddPromoComponent implements OnInit {
     {libelle: 'Fabrique 2'}
   ]
   constructor(
+    private toastr:ToastrService,
     private formbuild:FormBuilder,
     private promoservice:PromoService
     ) { }
@@ -115,6 +117,20 @@ export class AddPromoComponent implements OnInit {
     this.promoservice.getCompetences()
         .subscribe(data=>{
           this.competences=data;
+        })
+  }
+
+  relance_mail(app_attente:Apprenant){
+      this.promoservice.putRelanceApprenant(app_attente)
+        .subscribe(data=>{
+              this.toastr.success('Le message de relance a été envoyé','SUCCESS',{
+                timeOut:3000,progressBar:true,closeButton:true
+              })
+        },
+        error=>{
+              this.toastr.warning('Le message de relance a échoué','FAILED',{
+                timeOut:5000,progressBar:true
+              })
         })
   }
 

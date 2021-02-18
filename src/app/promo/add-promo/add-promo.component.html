@@ -217,7 +217,7 @@
                 <td>{{app_attente.email}}</td>
                 <td>
                   <mat-chip-list aria-label="Fish selection">
-                    <mat-chip style="cursor: pointer;margin: 0 auto;font-size: 0.8vw;margin: 2vh auto;" color="primary" selected> Relancer l'invitation</mat-chip>
+                    <mat-chip style="cursor: pointer;margin: 0 auto;font-size: 0.8vw;margin: 2vh auto;" (click)="relance_mail(app_attente)" color="primary" selected> Relancer l'invitation</mat-chip>
                   </mat-chip-list>
                 </td>
               </tr>

@@ -61,6 +61,11 @@ export class PromoService {
     return this.http.get<Apprenant[]>(`${apiURL}admin/promo/apprenants/attente`,{responseType:'json'});
   }
 
+  putRelanceApprenant(app_attente:Apprenant):Observable<void>{
+    const endpoint = `${apiURL}apprenants_relance/${app_attente.id}`;
+    return this.http.put<void>(endpoint,app_attente);
+  }
+
 
   postPromo(form:any,fileToUpload:any,avatar:any): Observable<any> {
     const endpoint = `${apiURL}admin/promo`;
