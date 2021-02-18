@@ -69,6 +69,7 @@ import { AddPromoComponent } from './promo/add-promo/add-promo.component';
 import { ListPromosComponent } from './promo/list-promos/list-promos.component';
 import { DetailsApprenantComponent } from './users/admin/details-apprenant/details-apprenant.component';
 import { MenuHeaderComponent } from './menu/menu-header/menu-header.component';
+import { ApprenantComponent } from './users/apprenant/apprenant/apprenant.component';
 
 @NgModule({
   declarations: [
@@ -101,6 +102,7 @@ import { MenuHeaderComponent } from './menu/menu-header/menu-header.component';
     ListPromosComponent,
     DetailsApprenantComponent,
     MenuHeaderComponent,
+    ApprenantComponent,
   ],
   imports: [
     BrowserModule,

@@ -26,7 +26,6 @@ export class AddGroupCompetenceComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.getCompetences();
- 
   }
 
   initForm(){

@@ -10,11 +10,15 @@
     <mat-card style="padding: 1vh;width: 40%;float: left;display: flex;justify-content: center;align-items: center;flex-direction: column;">
            <section style="margin: 0 auto;width: 100%;display: flex;justify-content:center;align-items: center; background-color: yellow;flex-direction: column;">
             <mat-card style="padding: 1vh;background-color: #cacfd2;width: 100%;font-weight: bold;">Liste groupe de competences</mat-card>
+            
+            
             <select (change)="getThosesCompetences(value_grpcpm)" [(ngModel)]="value_grpcpm" style="width: 100%;border-radius: 5px;text-align: center;height: 5vh;background-color: #2b2d42;color:#ffffff ">
                 <option selected>Choisir un groupe de competences</option>
                 <option *ngFor="let grpcomp of groupCompetences" [ngValue]="grpcomp.competences" >{{grpcomp.libelle}}</option>
               </select>
             </section>
+
+            
             <hr style="background-color: #2b2d42;height: 5px;color: red;width: 50%;margin:1vh auto">
             <mat-card style="padding: 1vh;background-color: #85929e;width: 100%;font-weight: bold;color: #ffffff;">Competences correspondantes</mat-card>
             <div style="width: 100%;height: 40vh;overflow: scroll;">

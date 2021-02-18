@@ -33,9 +33,7 @@ export class ListCompetencesComponent implements OnInit {
 
   getThosesCompetences(competences:any){
     if(typeof(competences)=="object"){
-      console.log(typeof(competences));
       this.competences=competences;
-      console.log(competences);
     }
   }
   display_niveaux(competence:Competence){
