@@ -85,7 +85,9 @@ export class AddPromoComponent implements OnInit {
     if(this.promoForm.valid){
       this.promoForm.value.dateDebut=formatDate(this.promoForm.value.dateDebut,'yyyy-MM-dd','en-US');
       this.promoForm.value.dateFin=formatDate(this.promoForm.value.dateFin,'yyyy-MM-dd','en-US');
+
       console.log(this.promoForm?.value,this.fileToUpload,this.files[0]);
+      
       this.promoservice.postPromo(this.promoForm.value,this.fileToUpload,this.files[0])
             .subscribe(
                   data=>{
@@ -137,9 +139,14 @@ export class AddPromoComponent implements OnInit {
   title = 'dropzone';
   files: File[] = [];
   onSelect(event:any) {
-      //pipe = new DatePipe('en-US');
-      console.log(formatDate(this.promoForm.value.dateDebut,'yyyy-MM-dd','en-US'));
-      console.log(event);
+      //Before formating Date
+      console.log('Before: '+this.promoForm.value.dateDebut);
+      //After formatDate method
+      console.log('After: '+formatDate(this.promoForm.value.dateDebut,'yyyy-MM-dd','en-US'));
+      //After with pipe obeject
+      let pipe = new DatePipe('en-US');
+      console.log(pipe.transform(this.promoForm.value.dateDebut,'yyyy-MM-dd hh:mm:ss'))
+
       this.files.push(...event.addedFiles);
       const formData = new FormData();
       for (var i = 0; i < this.files.length; i++) { 

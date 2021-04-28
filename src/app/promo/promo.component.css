@@ -11,10 +11,10 @@
     color: #ffffff;
   }
   .sidenav {
-    width: 15vw;
+    width: 20vw;
     background-color: #2b2d42;
-    
   }
+  
   .sidenav .mat-toolbar {
     background: inherit;
     color: #ffffff;
@@ -61,5 +61,13 @@
 .barre_button{
   background-color:  #85929e;
 }
-  
+
+mat-nav-list mat-icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  margin:0 5% 0 0;
+  width: 3vw;
+}
   

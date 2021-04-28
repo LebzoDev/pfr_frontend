@@ -171,9 +171,11 @@ onAddUser(){
 onEditUser(row:any){
   var leb = document.getElementById(row.id);
   var edit_email= document.getElementById(row.id+'_email');
-  var editContentEmail = edit_email?.getAttribute('contenteditable');
   var edit_prenom= document.getElementById(row.id+'_prenom');
+  var editContentEmail = edit_email?.getAttribute('contenteditable');
+
   var edit_nom= document.getElementById(row.id+'_nom');
+  console.log(edit_email?.getAttribute('contenteditable'));
 
   if (editContentEmail=='false') {
     if (leb && edit_email && edit_prenom && edit_nom) {
